@@ -13,6 +13,10 @@ let schema = yup.object().shape({
     name: yup.string().required("Arabic name is required"),
     text: yup.string().required("Arabic Text is required"),
   }),
+  tr: yup.object().shape({
+    name: yup.string().required("turkish name is required"),
+    text: yup.string().required("turkish Text is required"),
+  }),
   fr: yup.object().shape({
     name: yup.string().required("France name is required"),
     text: yup.string().required("France Text is required"),
@@ -28,9 +32,9 @@ export const useTermsCreate = () => {
     useForm(formOptions);
   const { errors } = formState;
   const { mutate } = useMutation((data) => createPost(data));
-  const [details, setDetails] = useState([]);
-  const [language, setLanguage] = useState("fr");
 
+  const [language, setLanguage] = useState("fr");
+  console.log("errors", errors);
   async function createPost(data) {
     _Terms
       .post(data, setLoading)

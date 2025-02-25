@@ -24,7 +24,7 @@ const steps = [
 
 const ProductCreate = () => {
 
-  const [newProductId, setNewProductId] = useState([5]);
+  const [newProductId, setNewProductId] = useState();
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => setActiveStep((prevStep) => prevStep + 1);

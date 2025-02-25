@@ -77,7 +77,7 @@ const TermsCreate = () => {
               errors={errors?.ar?.text?.message}
             />
           </Grid>
-          {/* <Grid item md={12} sx={{ p: "10px" }}>
+          <Grid item md={12} sx={{ p: "10px" }}>
             <Typography sx={{ margin: "0 0 8px 8px" }} variant="body1" color="text.secondary">
               Name Turkish
             </Typography>
@@ -90,8 +90,8 @@ const TermsCreate = () => {
               error={!!errors.tr?.name}
               helperText={errors.tr?.name?.message || ""}
             />
-          </Grid> */}
-          {/* <Grid item xs={12} sx={{ p: "10px" }}>
+          </Grid>
+          <Grid item xs={12} sx={{ p: "10px" }}>
             <Box sx={{ margin: "0 0 8px 5px" }}>
               <Typography variant="body1" color="text.secondary" sx={{ color: "text.main" }}>
                 {t("text turkish")}
@@ -104,7 +104,7 @@ const TermsCreate = () => {
               setValue={setValue}
               errors={errors?.tr?.text?.message}
             />
-          </Grid> */}
+          </Grid>
           <Grid item md={12} sx={{ p: "10px" }}>
             <Typography sx={{ margin: "0 0 8px 8px" }} variant="body1" color="text.secondary">
               Name France
@@ -115,8 +115,8 @@ const TermsCreate = () => {
               placeholder="name"
               defaultValue=""
               {...register(`fr.name`)}
-              error={!!errors.en?.name}
-              helperText={errors.en?.name?.message || ""}
+              error={!!errors.fr?.name}
+              helperText={errors.fr?.name?.message || ""}
             />
           </Grid>
           <Grid item xs={12} sx={{ p: "10px" }}>
@@ -128,9 +128,9 @@ const TermsCreate = () => {
             <EditorInput
               control={control}
               register={register}
-              name={"en.text"}
+              name={"fr.text"}
               setValue={setValue}
-              errors={!!errors?.en?.text}
+              errors={!!errors?.fr?.text}
             />
           </Grid>
         </Grid>

@@ -10,9 +10,11 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import {
   AdminPanelSettingsRounded,
   CategoryRounded,
+  ColorLensRounded,
   DiscountRounded,
   GavelRounded,
   HomeRounded,
+  Inventory,
   Money,
   MoneyRounded,
   ShoppingCartCheckout,
@@ -45,14 +47,21 @@ const SideBar = ({ open, setOpen }) => {
       link: "/dashboard/admin",
       icon: <AdminPanelSettingsRounded />,
     },
+
     {
       name: t("Products"),
+      link: "/dashboard/product",
+      icon: <Inventory />,
+    },
+    {
+      name: t("Product Types"),
+      link: "/dashboard/product_type" ,
+      icon: <ColorLensRounded />,
+    },
+    {
+      name: t("Categories"),
+      link: "/dashboard/products/categories" ,
       icon: <CategoryRounded />,
-      subOptions: [
-        { name: t("Products"), link: "/dashboard/product" },
-        { name: t("Categories"), link: "/dashboard/products/categories" },
-        { name: t("Product Type"), link: "/dashboard/product_type" },
-      ],
     },
 
     {
@@ -71,11 +80,7 @@ const SideBar = ({ open, setOpen }) => {
       link: "/dashboard/discounts",
       icon: <DiscountRounded />,
     },
-    {
-      name: t("point price"),
-      link: "/dashboard/settings",
-      icon: <MoneyRounded />,
-    },
+ 
     {
       name: t("terms"),
       link: "/dashboard/terms",
@@ -134,11 +139,7 @@ const SideBar = ({ open, setOpen }) => {
       icon: <ShoppingCartCheckout />,
     },
 
-    {
-      name: t("point price"),
-      link: "/dashboard/settings",
-      icon: <Money />,
-    },
+  
     {
       name: t("discounts"),
       link: "/dashboard/discounts",
@@ -163,7 +164,9 @@ const SideBar = ({ open, setOpen }) => {
       onMouseLeave={handleMouseLeave}
       sx={{
         "& .MuiDrawer-paper": {
-          boxShadow: "0px 4px 18px 0px rgba(47, 43, 61, 0.1)",
+          boxShadow: 3,
+          borderRadius:3,
+          m:'8px',
           borderRight: "none",
         },
       }}
@@ -175,12 +178,10 @@ const SideBar = ({ open, setOpen }) => {
       />
       <Box
         sx={{
-          padding: "0 16px",
-          pt: "20px",
+          padding: "0px 12px 0px 12px",
           display: "flex",
           flexDirection: "column",
           rowGap: "4px",
-          marginTop: "20px",
         }}
       >
         {returnLinks().map((link, index) => (
@@ -201,9 +202,9 @@ const SideBar = ({ open, setOpen }) => {
                     open={open || hovered}
                   />
                   {openSections[link.name] ? (
-                    <ExpandLessIcon sx={{ color: "text.main" }} />
+                    <ExpandLessIcon sx={{ color: "primary.contrastText" }} />
                   ) : (
-                    <ExpandMoreIcon sx={{ color: "text.main" }} />
+                    <ExpandMoreIcon sx={{ color: "primary.contrastText" }} />
                   )}
                 </Box>
                 <Collapse

@@ -48,7 +48,7 @@ const HomeIndex = () => {
       {editedID && <HomeUpdate id={editedID} type={type} />}
       {navUpdate && <NavUpdate id={navUpdate} setId={setNavUpdate} />}
 
-      <Box
+      <BoxStyled
         sx={{
           width: { sl: "300px" },
           backgroundColor: { xs: "background.main" },
@@ -275,7 +275,7 @@ const HomeIndex = () => {
               </Grid>
             ))}
         </BoxStyled>
-      </Box>
+      </BoxStyled>
     </>
   );
 };

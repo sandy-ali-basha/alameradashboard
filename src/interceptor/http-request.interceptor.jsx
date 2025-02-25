@@ -17,8 +17,8 @@ export const HttpRequestInterceptor = () => {
         )
           ? localStorage.getItem("i18nextLng")
           : "fr";
+      
         }
-
       return request;
     },
     function (error) {

@@ -100,7 +100,7 @@ const BlogIndex = () => {
         </TableCell>
       </TableRow>
     ));
-  }, [data, count, direction, handleEdit, handleView, page, t]);
+  }, [data?.data?.posts, direction, count, page, handleEdit, handleAddImages, handleView]);
 
   const handleCreate = () => navigate("create");
 
@@ -116,12 +116,12 @@ const BlogIndex = () => {
           ml: { xs: "0px" },
         }}
       >
-        <Box
+        <BoxStyled
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            mb: "25px",
+            mb: 2 , px:3,
           }}
         >
           <Typography sx={{ color: "text.main" }} variant="h5">
@@ -136,7 +136,7 @@ const BlogIndex = () => {
           >
             {t("New blog")}
           </Button>
-        </Box>
+        </BoxStyled>
 
         <BoxStyled sx={{ px: "10px" }}>
           <Table

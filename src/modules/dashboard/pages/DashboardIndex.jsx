@@ -6,7 +6,6 @@ const Dashboard = () => {
   return (
     <ApexChartWrapper>
       <Grid container spacing={2}>
-        {/* Order Status Cards */}
         GEt STARTED
       </Grid>
     </ApexChartWrapper>

@@ -20,7 +20,7 @@ export const _Admin = {
 
   update: ({ editedID, data }) =>
     _axios
-      .put(`/admin/${editedID}`, data) // Changed to PUT and correctly passing 'data'
+      .post(`/admin/${editedID}`, data) // Changed to PUT and correctly passing 'data'
       .then((res) => {
         return res;
       }),

@@ -21,7 +21,6 @@ import ChangeStatus from "../components/ChangeStatus";
 import ProductMenu from "../components/productMenu";
 import { useProductIndex } from "../hooks/useProductsIndex";
 import { DataGrid } from "@mui/x-data-grid";
-import ChangeStatusPurshasable from "../components/ChangeStatusPurshasable";
 import { DeleteSweep } from "@mui/icons-material";
 import { BoxStyled } from "components/styled/BoxStyled";
 import UpdateRegionPrice from "./UpdateRegionPrice";
@@ -51,8 +50,6 @@ const ProductIndex = () => {
     handleUpdatePrice,
     setOpenDelete,
     setOpenAttr,
-    cityFilter,
-    brandFilter,
     filteredData,
     t,
     selectedRowIds,
@@ -198,7 +195,7 @@ const ProductIndex = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <Box sx={{ overflow: "scroll", scrollbarWidth: "none" }}>
+    <Box>
       {editedID && <ProductUpdate id={editedID} />}
       {id && <AddImages id={id} open={open} setOpen={setOpen} />}
       {id && (
@@ -227,95 +224,78 @@ const ProductIndex = () => {
         />
       )}
 
-      <Box
+      <BoxStyled
         sx={{
-          width: "100%",
-          backgroundColor: "background.main",
-          p: 3,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 1,
+          width: `calc(100% - 24px)`,
         }}
       >
-        <BoxStyled
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            mb: 2,
-            px: 2,
-          }}
-        >
-          <Typography variant="h5" sx={{ color: "text.main" }}>
-            {t("products")}
-          </Typography>
-          <Box sx={{ display: "flex", gap: 2 }}>
-            {/* <TextField
-              label={t("City filter")}
-              value={cityFilter}
-              onChange={(e) => setCityFilter(e.target.value)}
-              size="small"
-            /> */}
-            {/* <TextField
-              label={t("Brand filter")}
-              value={brandFilter}
-              size="small"
-              onChange={(e) => setBrandFilter(e.target.value)}
-            /> */}
-          </Box>
-          <Box>
-            {selectedRowIds.length > 0 && (
-              <Tooltip title="Delete selected products">
-                <IconButton
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => BulkDelete()}
-                  disabled={loading}
-                >
-                  {loading ? <CircularProgress /> : <DeleteSweep />}
-                </IconButton>
-              </Tooltip>
-            )}
-            <Button
-              startIcon={<AddRoundedIcon />}
-              variant="contained"
-              color="secondary"
-              onClick={handleCreate}
-            >
-              {t("New product")}
-            </Button>
-          </Box>
-        </BoxStyled>
+        <Typography variant="h5" sx={{ color: "text.main" }}>
+          {t("products")}
+        </Typography>
 
-        <BoxStyled
+        <Box>
+          {selectedRowIds.length > 0 && (
+            <Tooltip title="Delete selected products">
+              <IconButton
+                variant="contained"
+                color="secondary"
+                onClick={() => BulkDelete()}
+                disabled={loading}
+              >
+                {loading ? <CircularProgress /> : <DeleteSweep />}
+              </IconButton>
+            </Tooltip>
+          )}
+          <Button
+            startIcon={<AddRoundedIcon />}
+            variant="contained"
+            color="secondary"
+            onClick={handleCreate}
+          >
+            {t("New product")}
+          </Button>
+        </Box>
+      </BoxStyled>
+
+      <BoxStyled
+        sx={{
+          display: "flex",
+          flexGrow: 1,
+          width: `calc(100% - 24px)`,
+          overflow: "scroll",
+          scrollbarWidth: "none",
+          py: 0,
+          border: "none",
+          borderRadius: 3,
+        }}
+      >
+        <DataGrid
           sx={{
-            width: "71vw",
-            overflow: "scroll",
-            scrollbarWidth: "none",
-            py: 0,
-            borderRadius: 3,
+            "&.MuiDataGrid-root": {
+              backgroundColor: "card.main", // Match body background
+              color: "text.main",
+              border: "none",
+              "--DataGrid-containerBackground": "card.main",
+              "--DataGrid-pinnedBackground": "card.main",
+              "--unstable_DataGrid-overlayBackground": "card.main",
+            },
           }}
-        >
-          <DataGrid
-            sx={{
-              "&.MuiDataGrid-root": {
-                backgroundColor: "background.paper", // Match body background
-                color: "text.main",
-                "--DataGrid-containerBackground": "background.paper",
-                "--DataGrid-pinnedBackground": "background.paper",
-                "--unstable_DataGrid-overlayBackground": "background.paper",
+          rows={rows}
+          columns={gridColumns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 10,
               },
-            }}
-            rows={rows}
-            columns={gridColumns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 10,
-                },
-              },
-            }}
-            pageSizeOptions={[5, 10, 25, 50]}
-          />
-        </BoxStyled>
-      </Box>
+            },
+          }}
+          pageSizeOptions={[5, 10, 25, 50]}
+        />
+      </BoxStyled>
     </Box>
   );
 };

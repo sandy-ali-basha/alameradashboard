@@ -111,7 +111,7 @@ const Product_attributesIndex = () => {
         </TableCell>
       </TableRow>
     ));
-  }, [data, count, direction, handleEdit, handleView, page, t]);
+  }, [data, count, direction, handleEdit, page]);
 
   const handleCreate = () => navigate("create");
 
@@ -125,14 +125,15 @@ const Product_attributesIndex = () => {
           width: { sl: "300px" },
           backgroundColor: { xs: "background.main" },
           ml: { xs: "0px" },
+          
         }}
       >
-        <Box
+        <BoxStyled
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            mb: "25px",
+            mb: 2 , px:3,
           }}
         >
           <Typography sx={{ color: "text.main" }} variant="h5">
@@ -147,7 +148,7 @@ const Product_attributesIndex = () => {
           >
             {t("New Categories")}
           </Button>
-        </Box>
+        </BoxStyled>
 
         <BoxStyled sx={{ px: "10px" }}>
           <Table

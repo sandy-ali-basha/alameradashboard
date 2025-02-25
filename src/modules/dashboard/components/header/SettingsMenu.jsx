@@ -14,7 +14,7 @@ const SettingsMenu = ({ open, hoverd }) => {
 
   const [mode] = settingsStore((state) => [state.setMode, state.mode]);
   const [direction] = settingsStore((state) => [
-    state.direction,
+    state.direction,  
     state.setDirection,
   ]);
 
@@ -35,14 +35,14 @@ const SettingsMenu = ({ open, hoverd }) => {
         <IconButton
           onClick={logOut}
           sx={{
-            color: "darkGray.main",
+            color: "primary.contrastText",
           }}
         >
           <Tooltip title={direction === "ltr" ? t("Logout") : t("تسجيل خروج")}>
             {mode === "dark" ? (
-              <LogoutIcon sx={{ color: "text.main" }}></LogoutIcon>
+              <LogoutIcon sx={{ color: "primary.contrastText" }}></LogoutIcon>
             ) : (
-              <LogoutIcon sx={{ color: "text.main" }}></LogoutIcon>
+              <LogoutIcon sx={{ color: "primary.contrastText" }}></LogoutIcon>
             )}
           </Tooltip>
         </IconButton>
@@ -52,7 +52,7 @@ const SettingsMenu = ({ open, hoverd }) => {
             textDecoration: "none",
             opacity: open || hoverd ? 1 : 0,
 
-            color: "text.main",
+            color: "primary.contrastText",
           }}
         >
           {t("Logout")}

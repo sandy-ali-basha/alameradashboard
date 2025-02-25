@@ -21,7 +21,6 @@ const SideBarLink = (props) => {
           sx={{
             textDecoration: "none",
             opacity: props.open ? 1 : 0,
-            color: props.disabled ? "text.disabled" : "text.main",
           }}
         >
           {props.text}

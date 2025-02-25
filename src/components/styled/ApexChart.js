@@ -9,11 +9,11 @@ const ApexChartWrapper = styled('div')(({ theme }) => ({
         '& .apexcharts-tooltip': {
             boxShadow: '0px 4px 18px 0px rgba(47, 43, 61, 0.1)',
             borderColor: theme.palette.divider.main,
-            background: theme.palette.background.paper,
+            background: theme.palette.background.main,
             '& .apexcharts-tooltip-title': {
                 fontWeight: 600,
                 borderColor: theme.palette.divider.main,
-                background: theme.palette.background.paper
+                background: theme.palette.background.main
             },
             '&.apexcharts-theme-light': {
                 color: theme.palette.text.main

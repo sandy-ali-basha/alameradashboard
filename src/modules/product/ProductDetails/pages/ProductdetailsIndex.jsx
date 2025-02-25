@@ -93,7 +93,7 @@ const ProductdetailsIndex = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            mb: "25px",
+            mb: 2 , px:3,
           }}
         >
           <Typography sx={{ color: "text.main" }} variant="h5">

@@ -1,3 +1,4 @@
+
 export const baseThemeOptions = {
   breakpoints: {
     values: {
@@ -13,7 +14,7 @@ export const baseThemeOptions = {
     MuiAvatar: {
       styleOverrides: {
         root: {
-          fontSize: 14,
+          fontSize: 12,
           fontWeight: 600,
           letterSpacing: 0,
         },
@@ -130,11 +131,12 @@ export const baseThemeOptions = {
   
   typography: {
   fontFamily:
-      '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+      'Montserrat',
   },
   zIndex: {
     appBar: 1200,
     drawer: 1100,
   },
+
 };
 

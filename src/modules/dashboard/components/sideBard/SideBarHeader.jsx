@@ -17,11 +17,11 @@ const SideBarHeader = ({ setOpen, open, hoverd }) => {
   const arrowAnim = useMemo(
     () => ({
       "&.MuiSvgIcon-root path:first-of-type": {
-        color: "darkGray.main",
+        color: "primary.contrastText",
         opacity: "0.48",
       },
       "&.MuiSvgIcon-root path:nth-of-type(2)": {
-        color: "darkGray.main",
+        color: "primary.contrastText",
       },
       transition: "0.1s",
     }),
@@ -59,7 +59,7 @@ const SideBarHeader = ({ setOpen, open, hoverd }) => {
           }}
         ></Box>
       )}
-      {/* {(open || hoverd) && (
+      {(open || hoverd) && (
         <IconButton onClick={toggleOpen}>
           {theme.direction === "rtl" ? (
             <KeyboardDoubleArrowRightIcon
@@ -77,7 +77,7 @@ const SideBarHeader = ({ setOpen, open, hoverd }) => {
             />
           )}
         </IconButton>
-      )} */}
+      )}
     </DrawerHeader>
   );
 };

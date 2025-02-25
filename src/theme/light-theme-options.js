@@ -19,8 +19,8 @@ const colors = {
     main: "#444545",
   },
   background: {
-    main: "#ececec",
-    paper: "#FFF",
+    main: "#f7f6f9",
+    paper: "rgb(46 196 182 / 80%)",
   },
   edit: {
     main: "#2f2b3d6b",
@@ -107,7 +107,7 @@ export const lightThemeOptions = {
             backgroundColor: colors.background.main,
             color: colors.text.main,
             "&:hover": {
-              backgroundColor: colors.background.paper,
+              backgroundColor: colors.background.main,
             },
           },
         },
@@ -118,7 +118,7 @@ export const lightThemeOptions = {
       styleOverrides: {
         root: {
           "&.MuiTableHead-root ": {
-            backgroundColor: colors.inactive.main,
+            // backgroundColor: colors.inactive.main,
           },
           ".MuiTableCell-root.MuiTableCell-head": {
             color: colors.darkGray.main,
@@ -132,7 +132,7 @@ export const lightThemeOptions = {
         root: {
           ".MuiTableCell-root.MuiTableCell-body": {
             color: colors.text.main,
-            borderBottom: "none",
+            // borderBottom: "none",
           },
         },
       },

@@ -95,12 +95,13 @@ const Product_typeIndex = () => {
           ml: { xs: "0px" },
         }}
       >
-        <Box
+        <BoxStyled
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            mb: "25px",
+            mb: 2 , px:3,
+            px:3,
           }}
         >
           <Typography sx={{ color: "text.main" }} variant="h5">
@@ -115,7 +116,7 @@ const Product_typeIndex = () => {
           >
             {t("New product type")}
           </Button>
-        </Box>
+        </BoxStyled>
 
         <BoxStyled sx={{ px: "10px" }}>
           <Table

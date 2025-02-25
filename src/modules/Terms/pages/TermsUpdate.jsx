@@ -3,11 +3,7 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
-import {
-  Box,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { colorStore } from "store/ColorsStore";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -25,10 +21,10 @@ const TermsUpdate = () => {
   const { t } = useTranslation("index");
 
   let schema = yup.object().shape({
-    // tr: yup.object().shape({
-    //   name: yup.string().required("Turkish name is required"),
-    //   text: yup.string().required("Turkish name is required"),
-    // }),
+    tr: yup.object().shape({
+      name: yup.string().required("Turkish name is required"),
+      text: yup.string().required("Turkish name is required"),
+    }),
     ar: yup.object().shape({
       name: yup.string().required("Arabic name is required"),
       text: yup.string().required("Arabic Text is required"),
@@ -63,14 +59,14 @@ const TermsUpdate = () => {
         const fetchedData = res.data?.data;
         setData(fetchedData);
         if (fetchedData) {
-          // setValue(
-          //   "tr.name",
-          //   fetchedData?.translations.find((t) => t.locale === "tr")?.name || ""
-          // );
-          // setValue(
-          //   "tr.text",
-          //   fetchedData?.translations.find((t) => t.locale === "tr")?.text || ""
-          // );
+          setValue(
+            "tr.name",
+            fetchedData?.translations.find((t) => t.locale === "tr")?.name || ""
+          );
+          setValue(
+            "tr.text",
+            fetchedData?.translations.find((t) => t.locale === "tr")?.text || ""
+          );
 
           setValue(
             "ar.name",
@@ -123,14 +119,16 @@ const TermsUpdate = () => {
     <>
       {loading && <Loader />}
       <Dialog open={open} onClose={handleClose} maxWidth>
-        <DialogTitle sx={{ color: "text.main" }}>
-          {t("Edit Row")}
-        </DialogTitle>
+        <DialogTitle sx={{ color: "text.main" }}>{t("Edit Row")}</DialogTitle>
         {!!data && (
           <>
             <Grid container component="form">
               <Grid item md={12} sx={{ p: "10px" }}>
-                <Typography sx={{ margin: "0 0 8px 8px" }} variant="body1" color="text.secondary">
+                <Typography
+                  sx={{ margin: "0 0 8px 8px" }}
+                  variant="body1"
+                  color="text.secondary"
+                >
                   name arabic
                 </Typography>
                 <TextFieldStyled
@@ -144,7 +142,11 @@ const TermsUpdate = () => {
               </Grid>
               <Grid item xs={12} sx={{ p: "10px" }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
-                  <Typography variant="body1" color="text.secondary" sx={{ color: "text.main" }}>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{ color: "text.main" }}
+                  >
                     text arabic
                   </Typography>
                 </Box>
@@ -160,8 +162,12 @@ const TermsUpdate = () => {
                   }
                 />
               </Grid>
-              {/* <Grid item md={12} sx={{ p: "10px" }}>
-                <Typography sx={{ margin: "0 0 8px 8px" }} variant="body1" color="text.secondary">
+              <Grid item md={12} sx={{ p: "10px" }}>
+                <Typography
+                  sx={{ margin: "0 0 8px 8px" }}
+                  variant="body1"
+                  color="text.secondary"
+                >
                   Name Turkish
                 </Typography>
                 <TextFieldStyled
@@ -172,10 +178,14 @@ const TermsUpdate = () => {
                   error={!!errors.tr?.name}
                   helperText={errors.tr?.name?.message || ""}
                 />
-              </Grid> */}
-              {/* <Grid item xs={12} sx={{ p: "10px" }}>
+              </Grid>
+              <Grid item xs={12} sx={{ p: "10px" }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
-                  <Typography variant="body1" color="text.secondary" sx={{ color: "text.main" }}>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{ color: "text.main" }}
+                  >
                     text turkish
                   </Typography>
                 </Box>
@@ -190,9 +200,13 @@ const TermsUpdate = () => {
                     ""
                   }
                 />
-              </Grid> */}
+              </Grid>
               <Grid item md={12} sx={{ p: "10px" }}>
-                <Typography sx={{ margin: "0 0 8px 8px" }} variant="body1" color="text.secondary">
+                <Typography
+                  sx={{ margin: "0 0 8px 8px" }}
+                  variant="body1"
+                  color="text.secondary"
+                >
                   Name France
                 </Typography>
                 <TextFieldStyled
@@ -200,22 +214,26 @@ const TermsUpdate = () => {
                   type={"text"}
                   placeholder="name"
                   {...register(`fr.name`)}
-                  error={!!errors.en?.name}
-                  helperText={errors.en?.name?.message || ""}
+                  error={!!errors.fr?.name}
+                  helperText={errors.fr?.name?.message || ""}
                 />
               </Grid>
               <Grid item xs={12} sx={{ p: "10px" }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
-                  <Typography variant="body1" color="text.secondary" sx={{ color: "text.main" }}>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{ color: "text.main" }}
+                  >
                     {t("text France")}
                   </Typography>
                 </Box>
                 <EditorInput
                   control={control}
                   register={register}
-                  name={"en.text"}
+                  name={"fr.text"}
                   setValue={setValue}
-                  errors={!!errors?.en?.text}
+                  errors={!!errors?.fr?.text}
                   initialValue={
                     data?.translations.find((t) => t.locale === "fr")?.text ||
                     ""

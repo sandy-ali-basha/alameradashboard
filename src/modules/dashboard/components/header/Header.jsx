@@ -24,7 +24,14 @@ const Header = ({ open }) => {
   };
 
   return (
-    <AppBar position="fixed" open={open}>
+    <AppBar
+      sx={{
+        boxShadow: "0px 4px 18px 0px rgba(47, 43, 61, 0.1)",
+        borderRadius: 3,
+      }}
+      position="fixed"
+      open={open}
+    >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box></Box>
         <Box
@@ -52,11 +59,15 @@ const Header = ({ open }) => {
           <IconButton
             onClick={() => setMode(mode === "dark" ? "light" : "dark")}
             sx={{
-              color: "darkGray.main",
+              color: "primary.contrastText",
             }}
           >
             <Tooltip title={mode === "dark" ? "light mode" : "dark mode"}>
-              {mode === "dark" ? <LightModeIcon sx={{color:"text.main"}}/> : <DarkModeIcon sx={{color:"text.main"}}/>}
+              {mode === "dark" ? (
+                <LightModeIcon sx={{ color: "primary.contrastText" }} />
+              ) : (
+                <DarkModeIcon sx={{ color: "primary.contrastText" }} />
+              )}
             </Tooltip>
           </IconButton>
           {/* <IconButton>

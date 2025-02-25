@@ -6,6 +6,7 @@ import { SnackbarProvider } from "notistack";
 import { ThemeProviderWraper } from "./theme/providers/ThemeProvider";
 import { RTLProvider } from "./theme/providers/RTLProvider";
 import "./I18n";
+import 'index.css'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

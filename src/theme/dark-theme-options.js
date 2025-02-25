@@ -2,10 +2,10 @@
 const colors = {
   background: {
     main: "#444545",
-    paper: "#323434",
+    paper: "#718483",
   },
   extrenal: {
-    main: "#3D3E3E",
+    main: "#444545",
   },
   main: "#FFF8F0",
   origin: {
@@ -18,7 +18,7 @@ const colors = {
     main: "#FFF8F0",
   },
   inactive: {
-    main: "#3D3E3E",
+    main: "#444545",
   },
   darkGray: {
     main: "#718483",
@@ -85,18 +85,7 @@ const colors = {
 
 export const typography = {
   fontFamily: [
-    'Public Sans',
-    'sans-serif',
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Roboto',
-    '"Helvetica Neue"',
-    'Arial',
-    'sans-serif',
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"'
+    'Montserrat'
   ].join(','),
   fontSize: 13.125,
   

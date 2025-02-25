@@ -21,14 +21,6 @@ let schema = yup.object().shape({
     name: yup.string().required("Turkish name name is required"),
     description: yup.string().required("Turkish description is required"),
   }),
-  // ar: yup.object().shape({
-  //   name: yup.string().required("Arabic name name is required"),
-  //   description: yup.string().required("Arabic description is required"),
-  // }),
-  // fr: yup.object().shape({
-  //   name: yup.string().required("name is required"),
-  //   description: yup.string().required("France description is required"),
-  // }),
 });
 
 export const useProductCreate = ({ setNewProductId }) => {
@@ -47,22 +39,15 @@ export const useProductCreate = ({ setNewProductId }) => {
     resolver: yupResolver(schema),
     defaultValues: {
       points: 0, // Set the initial value for "points"
-      product_type_id:1
+      product_type_id: 1,
     },
   };
-  const {
-    register,
-    handleSubmit,
-    formState,
-    setValue,
-    control,
-    reset,
-    watch
-  } = useForm(formOptions);
+  const { register, handleSubmit, formState, setValue, control, reset, watch } =
+    useForm(formOptions);
   const { errors } = formState;
   const price = watch("price"); // Watch for changes in the "price" field
 
-  console.log(errors)
+  console.log(errors);
   useEffect(() => {
     // Update the "points" field whenever "price" or "point_price" changes
     if (price && point_price) {
@@ -70,7 +55,6 @@ export const useProductCreate = ({ setNewProductId }) => {
         "points",
         Math.round(price / point_price?.data?.point_price?.value) // تقريب القيمة
       );
-
     } else {
       setValue("points", 0);
     }
@@ -92,7 +76,7 @@ export const useProductCreate = ({ setNewProductId }) => {
       head: t("name"),
       type: "text",
       placeholder: t("name"),
-      name: "tr name",
+      name: "tr.name",
       register: "tr.name",
       error: "tr.name",
       helperText: "tr.name",
@@ -163,12 +147,12 @@ export const useProductCreate = ({ setNewProductId }) => {
         ...input,
         region_id: selectedRegion,
         region_price: input.price,
-        description: input?.en?.description || "",
+        description: input?.description || " dd",
       };
 
       // Return a single POST request
       return _Product
-        .post(productData, setLoading)  
+        .post(productData, setLoading)
         .then((res) => {
           if (res?.code === 200) setNewProductId(res?.data?.products_id);
         })
@@ -192,8 +176,8 @@ export const useProductCreate = ({ setNewProductId }) => {
         ...input,
         brand_id: 34,
         city_id: 1, // Current city_id for each request
-        product_type_id: 1,
-        description: input?.en?.description || "",
+        description: input?.tr?.description || "",
+        points: 0,
       };
 
       // Return the promise for this POST request
