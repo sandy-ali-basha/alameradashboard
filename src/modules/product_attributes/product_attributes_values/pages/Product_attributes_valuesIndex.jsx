@@ -10,7 +10,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 
 import { BoxStyled } from "components/styled/BoxStyled";
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ModeTwoToneIcon from "@mui/icons-material/ModeTwoTone";
 import { settingsStore } from "store/settingsStore";
@@ -22,6 +22,8 @@ import { colorStore } from "store/ColorsStore";
 import { useProduct_attributes_values } from "hooks/product_attributes_values/useProduct_attributes_values";
 import Product_attributes_valuesUpdate from "./Product_attributes_valuesUpdate";
 import DeleteDialog from "../components/Dialog";
+import { Image, PhotoAlbum } from "@mui/icons-material";
+import AddImage from "../components/AddImage";
 
 const Product_attributes_valuesIndex = () => {
   const { t } = useTranslation("index");
@@ -36,11 +38,13 @@ const Product_attributes_valuesIndex = () => {
     state.editedID,
     state.setEditedID,
   ]);
+  const [id, setID] = useState();
+  const [open, setOpen] = useState();
 
   const columns = useMemo(() => {
     return [
       t("value arabic"),
-      // t("value turkish"),
+      t("value turkish"),
       t("value France"),
       t("operations"),
     ];
@@ -58,7 +62,10 @@ const Product_attributes_valuesIndex = () => {
     },
     [setEditedID]
   );
-
+  const handleAddImages = useCallback((id) => {
+    setID(id);
+    setOpen(true);
+  }, []);
   const rows = useMemo(() => {
     return data?.data?.product_attributes_values?.map(
       (product_attributes_values, id) => (
@@ -70,9 +77,9 @@ const Product_attributes_valuesIndex = () => {
           <TableCell sx={{ minWidth: 50 }}>
             {product_attributes_values?.translations[0]?.value ?? "Null"}
           </TableCell>
-          {/* <TableCell sx={{ minWidth: 50 }}>
+          <TableCell sx={{ minWidth: 50 }}>
             {product_attributes_values?.translations[1]?.value ?? "Null"}
-          </TableCell> */}
+          </TableCell>
           <TableCell sx={{ minWidth: 50 }}>
             {product_attributes_values?.translations[1]?.value ?? "Null"}
           </TableCell>
@@ -88,12 +95,20 @@ const Product_attributes_valuesIndex = () => {
                 : t("Not Active")}
             </ChangeStatus>
           </TableCell> */}
+
           <TableCell
             align="center"
             sx={{
               minWidth: 200,
             }}
           >
+            <IconButton
+              onClick={() => handleAddImages(product_attributes_values?.id)}
+            >
+              <Tooltip title={"اضافة صورة"}>
+                <PhotoAlbum sx={{ color: "text.main" }} />
+              </Tooltip>
+            </IconButton>
             <IconButton
               onClick={() => handleEdit(product_attributes_values?.id)}
             >
@@ -122,7 +137,7 @@ const Product_attributes_valuesIndex = () => {
     <>
       {isLoading && <Loader />}
       {editedID && <Product_attributes_valuesUpdate id={editedID} />}
-
+      {id && <AddImage id={id} open={open} setOpen={setOpen} />}
       <Box
         sx={{
           width: { sl: "300px" },
@@ -135,7 +150,8 @@ const Product_attributes_valuesIndex = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            mb: 2 , px:3,
+            mb: 2,
+            px: 3,
           }}
         >
           <Typography sx={{ color: "text.main" }} variant="h5">

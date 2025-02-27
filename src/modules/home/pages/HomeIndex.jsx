@@ -15,14 +15,17 @@ import Loader from "components/shared/Loader";
 import { colorStore } from "store/ColorsStore";
 import { useHome } from "hooks/home/useHome";
 import HomeUpdate from "./HomeUpdate";
-import { Edit } from "@mui/icons-material";
+import { Add, Edit } from "@mui/icons-material";
 import { useNav } from "hooks/home/useNav";
 import NavUpdate from "./NavUpdate";
+import HomeCreate from "./HomeCreate";
 
 const HomeIndex = () => {
   const { data, isLoading } = useHome();
   const { data: navData, isLoading: navIsLoading } = useNav();
   const [navUpdate, setNavUpdate] = useState();
+  const [createdID, setcreatedID] = useState();
+  const [create, setCreate] = useState(false);
   const [type, setType] = useState();
   const [editedID, setEditedID] = colorStore((state) => [
     state.editedID,
@@ -41,6 +44,14 @@ const HomeIndex = () => {
     },
     [setNavUpdate]
   );
+  const handleCreate = useCallback(
+    (id, type) => {
+      setCreate(true);
+      setcreatedID(id);
+      setType(type);
+    },
+    [setcreatedID]
+  );
 
   return (
     <>
@@ -48,7 +59,14 @@ const HomeIndex = () => {
       {editedID && <HomeUpdate id={editedID} type={type} />}
       {navUpdate && <NavUpdate id={navUpdate} setId={setNavUpdate} />}
 
-      <BoxStyled
+      <HomeCreate
+        type={type}
+        open={create}
+        setOpen={setCreate}
+        id={createdID}
+      />
+
+      <Box
         sx={{
           width: { sl: "300px" },
           backgroundColor: { xs: "background.main" },
@@ -72,13 +90,60 @@ const HomeIndex = () => {
           ))}
         </BoxStyled>
         <Typography sx={{ my: 2 }} variant="body1" color="initial">
-          Slider
+          Slider 1
         </Typography>
         <BoxStyled sx={{ px: "10px" }}>
           {data?.data?.home_sections
             ?.filter((section) => section.type === "slider") // Filter sections of type "banner"
             .map((section, idx) => (
               <Box key={section.id}>
+                {section.items.map((item) => (
+                  <Card key={item.id} sx={{ mt: 2 }}>
+                    <CardMedia
+                      component="img"
+                      height="300"
+                      image={item.image}
+                      alt={item.title}
+                    />
+                    <CardContent>
+                      <Typography variant="h6">{item.title}</Typography>
+                      <Typography variant="body2">
+                        {item.description}
+                      </Typography>
+                      <Button
+                        href={item.cta_link}
+                        target="_blank"
+                        variant="contained"
+                        sx={{ mt: 1 }}
+                      >
+                        {item.cta_link}
+                      </Button>
+                    </CardContent>
+                    <CardActions>
+                      <IconButton
+                        onClick={() => handleEdit(item?.id, "slider")}
+                      >
+                        <Edit />
+                      </IconButton>
+                    </CardActions>
+                  </Card>
+                ))}
+              </Box>
+            ))}
+        </BoxStyled>
+        <Typography sx={{ my: 2 }} variant="body1" color="initial">
+          Slider 2
+        </Typography>
+        <BoxStyled sx={{ px: "10px" }}>
+          {data?.data?.home_sections
+            ?.filter((section) => section.type === "slider2") // Filter sections of type "banner"
+            .map((section, idx) => (
+              <Box key={section.id}>
+                <IconButton
+                  onClick={() => handleCreate(section?.id, "slider2")}
+                >
+                  <Add />
+                </IconButton>
                 {section.items.map((item) => (
                   <Card key={item.id} sx={{ mt: 2 }}>
                     <CardMedia
@@ -121,6 +186,9 @@ const HomeIndex = () => {
             ?.filter((section) => section.type === "collections") // Filter sections of type "banner"
             .map((section, idx) => (
               <Grid container key={section.id}>
+                <IconButton onClick={() => handleCreate(section?.id, "slider")}>
+                  <Add />
+                </IconButton>
                 {section.items.map((item) => (
                   <Grid item md="4" key={item.id} sx={{ mt: 2, p: 1 }}>
                     <CardMedia
@@ -143,7 +211,7 @@ const HomeIndex = () => {
                       </Button>
                     </CardContent>
                     <CardActions>
-                    <IconButton
+                      <IconButton
                         onClick={() => handleEdit(item?.id, "collections")}
                       >
                         <Edit />
@@ -182,11 +250,11 @@ const HomeIndex = () => {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                      <IconButton
-                        onClick={() => handleEdit(item?.id, "categories")}
-                      >
-                        <Edit />
-                      </IconButton>
+                        <IconButton
+                          onClick={() => handleEdit(item?.id, "categories")}
+                        >
+                          <Edit />
+                        </IconButton>
                       </CardActions>
                     </a>
                   </Grid>
@@ -219,11 +287,11 @@ const HomeIndex = () => {
                         <Typography variant="h6">{item.title}</Typography>
                       </CardContent>
                       <CardActions>
-                      <IconButton
-                        onClick={() => handleEdit(item?.id, "TwoItems")}
-                      >
-                        <Edit />
-                      </IconButton>
+                        <IconButton
+                          onClick={() => handleEdit(item?.id, "TwoItems")}
+                        >
+                          <Edit />
+                        </IconButton>
                       </CardActions>
                     </a>
                   </Grid>
@@ -264,7 +332,7 @@ const HomeIndex = () => {
                       </Button>
                     </CardContent>
                     <CardActions>
-                    <IconButton
+                      <IconButton
                         onClick={() => handleEdit(item?.id, "banner")}
                       >
                         <Edit />
@@ -275,7 +343,7 @@ const HomeIndex = () => {
               </Grid>
             ))}
         </BoxStyled>
-      </BoxStyled>
+      </Box>
     </>
   );
 };

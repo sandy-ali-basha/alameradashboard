@@ -87,11 +87,11 @@ const SideBar = ({ open, setOpen }) => {
       icon: <GavelRounded />,
     },
 
-    // {
-    //   name: t("Home"),
-    //   link: "/dashboard/home",
-    //   icon: <HomeRounded color={"secondary.main"} />,
-    // },
+    {
+      name: t("Home"),
+      link: "/dashboard/home",
+      icon: <HomeRounded color={"secondary.main"} />,
+    },
     {
       name: t("customers"),
       link: "/dashboard/customers",
@@ -104,11 +104,11 @@ const SideBar = ({ open, setOpen }) => {
       link: "/dashboard/terms",
       icon: <GavelRounded />,
     },
-    // {
-    //   name: t("Home"),
-    //   link: "/dashboard/home",
-    //   icon: <HomeRounded color={"secondary.main"} />,
-    // },
+    {
+      name: t("Home"),
+      link: "/dashboard/home",
+      icon: <HomeRounded color={"secondary.main"} />,
+    },
   ];
   const orders_admin = [
     {
