@@ -29,8 +29,8 @@ import EditorInput from "components/shared/EditorInput";
 import { _cities } from "api/cities/cities";
 
 let schema = yup.object().shape({
-  // brand_id: yup.string().trim().required("brand is required"),
-  // product_type_id: yup.string().trim().required("product type is required"),
+  brand_id: yup.string().trim().required("brand is required"),
+  product_type_id: yup.string().trim().required("product type is required"),
   price: yup.number().required("price type is required"),
   qty: yup.number().required("quantity type is required"),
   // city_id: yup.string().trim().required("city is required"),
@@ -42,13 +42,13 @@ let schema = yup.object().shape({
   //   name: yup.string().required("Turkish name name is required"),
   //   description: yup.string().required("Turkish description is required"),
   // }),
-  ar: yup.object().shape({
-    name: yup.string().required("Arabic name name is required"),
-    description: yup.string().required("Arabic description is required"),
-  }),
-  fr: yup.object().shape({
-    name: yup.string().required("France name name is required"),
-    description: yup.string().required("France description is required"),
+  // ar: yup.object().shape({
+  //   name: yup.string().required("Arabic name name is required"),
+  //   description: yup.string().required("Arabic description is required"),
+  // }),
+  tr: yup.object().shape({
+    name: yup.string().required("Turkish name name is required"),
+    description: yup.string().required("Turkish description is required"),
   }),
   points: yup.number().notRequired(),
 });
@@ -64,6 +64,7 @@ const ProductUpdate = ({ id }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [brands, setBrand] = useState(data?.brand_id);
+  const [producttypes, setproducttypes] = useState();
 
   const formOptions = {
     resolver: yupResolver(schema),
@@ -110,13 +111,13 @@ const ProductUpdate = ({ id }) => {
           //     ?.description || ""
           // );
           setValue(
-            "fr.name",
-            fetchedData?.translations?.find((t) => t.locale === "fr")?.name ||
+            "tr.name",
+            fetchedData?.translations?.find((t) => t.locale === "tr")?.name ||
               ""
           );
           setValue(
-            "en.description",
-            fetchedData?.translations?.find((t) => t.locale === "fr")
+            "tr.description",
+            fetchedData?.translations?.find((t) => t.locale === "tr")
               ?.description || ""
           );
         }
@@ -125,8 +126,8 @@ const ProductUpdate = ({ id }) => {
 
   const languages = [
     // { code: "ar", name: "Arabic" },
-    // { code: "tr", name: "Turkish" },
-    { code: "fr", name: "France" },
+    { code: "tr", name: "Turkish" },
+    // { code: "fr", name: "France" },
   ];
 
   const details = languages.flatMap((lang) => [
@@ -215,10 +216,10 @@ const ProductUpdate = ({ id }) => {
       setBrand(res?.data?.data?.brands);
       setLoading(false);
     });
-    // _axios.get("/product_type").then((res) => {
-    //   setproducttypes(res?.data?.data?.producttypes);
-    //   setLoading(false);
-    // });
+    _axios.get("/product_type").then((res) => {
+      setproducttypes(res?.data?.data?.producttypes);
+      setLoading(false);
+    });
   }, []);
 
   const handleClose = () => {
@@ -236,7 +237,7 @@ const ProductUpdate = ({ id }) => {
   const { mutate } = useMutation((data) => createPost(data));
 
   async function createPost(data) {
-    const NewData = { ...data, brand_id: 34, product_type_id: 1, city_id: 1 };
+    const NewData = { ...data, city_id: 1 };
     _Product
       .update({
         editedID: editedID,
@@ -283,7 +284,7 @@ const ProductUpdate = ({ id }) => {
             {" "}
             <Grid container component="form">
               {brands && (
-                <Grid item xs={6} sx={{ p: "10px" }}>
+                <Grid item md={6} xs={12} sx={{ p: 1 }}>
                   <FormControl fullWidth>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography color="text.main">{t("brand")}</Typography>
@@ -306,7 +307,7 @@ const ProductUpdate = ({ id }) => {
                 </Grid>
               )}
               {/* cities */}
-              {/* <Grid item xs={6} sx={{ p: "10px" }}>
+              {/* <Grid item md={6} xs={12} sx={{ p: 1 }}>
                 {cities ? (
                   <FormControl fullWidth>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
@@ -336,8 +337,8 @@ const ProductUpdate = ({ id }) => {
 
               {/* producttypes */}
               
-              {/* {producttypes && (
-                <Grid item xs={6} sx={{ p: "10px" }}>
+              {producttypes && (
+                <Grid item md={6} xs={12} sx={{ p: 1 }}>
                   <FormControl fullWidth>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography color="text.main">
@@ -360,11 +361,11 @@ const ProductUpdate = ({ id }) => {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-              )} */}
+              )}
               {details?.map((item, index) => {
                 const error = errors?.[item.register.split(".")[0]]?.name;
                 return (
-                  <Grid key={index} item md={6} sx={{ p: "10px" }}>
+                  <Grid key={index} item md={6} xs={12} sx={{ p: 1 }}>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography color="text.main">{item.head}</Typography>
                     </Box>
@@ -385,7 +386,7 @@ const ProductUpdate = ({ id }) => {
               {TextEditorDetails?.map((item, index) => {
                 const error = errors?.[item.register.split(".")[0]]?.name;
                 return (
-                  <Grid key={index} item md={12} sx={{ p: "10px" }}>
+                  <Grid key={index} item md={12} xs={12} sx={{ p: 1 }}>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography variant="text.main" color="text.main">
                         {item.head}

@@ -52,10 +52,10 @@ const CreateProductDetails = ({ setNewProductId }) => {
   return (
     <Box>
       {loading && <Loader />}
-      <Typography sx={{ color: "text.main", mb: "16px" }} variant="h5">
+      <Typography sx={{ color: "text.main", mb: 1 }} variant="h5">
         {t("Create Product")}
       </Typography>
-      <BoxStyled sx={{ px: "24px" }}>
+      <BoxStyled sx={{ px: 2 }}>
         <Box component="form">
           <Grid container spacing={2}>
             {/* <Grid
@@ -164,7 +164,7 @@ const CreateProductDetails = ({ setNewProductId }) => {
                 )}
               </Grid>
             </Grid> */}
-            <Grid item xs={6} sx={{ p: "10px" }}>
+            <Grid item md={6} xs={12} sx={{ p: 1 }}>
               {brands ? (
                 <FormControl fullWidth>
                   <Box sx={{ margin: "0 0 8px 5px" }}>
@@ -190,7 +190,7 @@ const CreateProductDetails = ({ setNewProductId }) => {
                 </Typography>
               )}
             </Grid>
-            <Grid item xs={6} sx={{ p: "10px" }}>
+            <Grid item md={6} xs={12} sx={{ p: 1 }}>
               {" "}
               <FormControl fullWidth>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
@@ -209,7 +209,7 @@ const CreateProductDetails = ({ setNewProductId }) => {
                 <FormHelperText error>{errors?.status?.message}</FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item xs={6} sx={{ p: "10px" }}>
+            <Grid item md={6} xs={12} sx={{ p: 1 }}>
               {producttypes?.length > 0 ? (
                 <FormControl fullWidth>
                   <Box sx={{ margin: "0 0 8px 5px" }}>
@@ -242,7 +242,7 @@ const CreateProductDetails = ({ setNewProductId }) => {
             {details.map((item, index) => {
               const error = errors?.[item.register.split(".")[0]]?.name;
               return (
-                <Grid item key={index} xs={6} sx={{ p: "10px" }}>
+                <Grid item key={index} md={6} xs={12} sx={{ p: 1 }}>
                   <Box sx={{ margin: "0 0 8px 5px" }}>
                     <Typography color="text.main" variant="body1">
                       {item.head}
@@ -262,7 +262,7 @@ const CreateProductDetails = ({ setNewProductId }) => {
             })}
             {generalDetails.map((item, index) => {
               return (
-                <Grid item key={index} xs={6} sx={{ p: "10px" }}>
+                <Grid item key={index} md={6} xs={12} sx={{ p: 1 }}>
                   <Box sx={{ margin: "0 0 8px 5px" }}>
                     <Typography color="text.main" variant="body1">
                       {item.head}
@@ -284,7 +284,7 @@ const CreateProductDetails = ({ setNewProductId }) => {
               const error = errors?.[item.register.split(".")[0]]?.name;
 
               return (
-                <Grid item key={index} xs={12} sx={{ p: "10px" }}>
+                <Grid item key={index} xs={12} sx={{ p: 1 }}>
                   <Box sx={{ margin: "0 0 8px 5px" }}>
                     <Typography color="text.main" variant="body1">
                       {item.head}

@@ -47,7 +47,6 @@ export const useProductCreate = ({ setNewProductId }) => {
   const { errors } = formState;
   const price = watch("price"); // Watch for changes in the "price" field
 
-  console.log(errors);
   useEffect(() => {
     // Update the "points" field whenever "price" or "point_price" changes
     if (price && point_price) {
@@ -147,14 +146,14 @@ export const useProductCreate = ({ setNewProductId }) => {
         ...input,
         region_id: selectedRegion,
         region_price: input.price,
-        description: input?.description || " dd",
+        description: input?.description || " ",
       };
 
       // Return a single POST request
       return _Product
         .post(productData, setLoading)
         .then((res) => {
-          if (res?.code === 200) setNewProductId(res?.data?.products_id);
+          if (res?.code === 200) navigate(-1);
         })
         .finally(() => {
           setLoading(false);
@@ -183,7 +182,7 @@ export const useProductCreate = ({ setNewProductId }) => {
       // Return the promise for this POST request
       return _Product
         .post(productData, setLoading)
-        .then((res) => res.code === 200 && navigate(-1));
+        .then((res) => res.code === 200 && setNewProductId(res?.data?.id));
 
       // Run all requests in parallel and return the promise
       // return Promise.all(requests)

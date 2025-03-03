@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Drawer } from "../styled/Drawer";
-import { Box, Collapse } from "@mui/material";
+import { Box, Collapse, useMediaQuery } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SideBarHeader from "./SideBarHeader";
@@ -15,16 +15,19 @@ import {
   GavelRounded,
   HomeRounded,
   Inventory,
-  Money,
-  MoneyRounded,
   ShoppingCartCheckout,
   ShoppingCartCheckoutRounded,
   StorefrontRounded,
 } from "@mui/icons-material";
-const SideBar = ({ open, setOpen }) => {
+
+import { navStore } from "store/settingsStore";
+import { drawerWidth } from "modules/dashboard/DashboardComponent";
+
+const SideBar = () => {
   const { t } = useTranslation("sidebar");
   const [hovered, setHovered] = useState(false);
   const [openSections, setOpenSections] = useState({});
+  const [open, setOpen] = navStore((state) => [state.open, state.setOpen]);
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -40,6 +43,7 @@ const SideBar = ({ open, setOpen }) => {
     }));
   };
   const role = localStorage.getItem("role");
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const links = [
     {
@@ -55,12 +59,12 @@ const SideBar = ({ open, setOpen }) => {
     },
     {
       name: t("Product Types"),
-      link: "/dashboard/product_type" ,
+      link: "/dashboard/product_type",
       icon: <ColorLensRounded />,
     },
     {
       name: t("Categories"),
-      link: "/dashboard/products/categories" ,
+      link: "/dashboard/products/categories",
       icon: <CategoryRounded />,
     },
 
@@ -80,7 +84,7 @@ const SideBar = ({ open, setOpen }) => {
       link: "/dashboard/discounts",
       icon: <DiscountRounded />,
     },
- 
+
     {
       name: t("terms"),
       link: "/dashboard/terms",
@@ -139,7 +143,6 @@ const SideBar = ({ open, setOpen }) => {
       icon: <ShoppingCartCheckout />,
     },
 
-  
     {
       name: t("discounts"),
       link: "/dashboard/discounts",
@@ -157,17 +160,18 @@ const SideBar = ({ open, setOpen }) => {
 
   return (
     <Drawer
-      variant="permanent"
+      variant={isMobile ? "temporary" : "permanent"}
       open={open}
-      hovered={hovered ? "true" : ""}
+      onClose={() => setOpen(false)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       sx={{
         "& .MuiDrawer-paper": {
           boxShadow: 3,
-          borderRadius:3,
-          m:'8px',
+          borderRadius: 3,
+          m: isMobile ? "4px" : "8px",
           borderRight: "none",
+          width: isMobile ? drawerWidth : open ? drawerWidth : 72,
         },
       }}
     >
@@ -178,7 +182,7 @@ const SideBar = ({ open, setOpen }) => {
       />
       <Box
         sx={{
-          padding: "0px 12px 0px 12px",
+          padding: isMobile ? "0px 8px" : "0px 12px",
           display: "flex",
           flexDirection: "column",
           rowGap: "4px",

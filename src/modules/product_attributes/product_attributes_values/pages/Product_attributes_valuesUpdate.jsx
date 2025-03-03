@@ -94,7 +94,7 @@ const Product_attributes_valuesUpdate = ({ id }) => {
   const hanldeUpdate = (input) => {
     const Values = {
       ar: { value: input.ar.name },
-      // tr: { value: input.tr.name },
+      tr: { value: input.tr.name },
       fr: { value: input.fr.name },
       // product_attributes_id: params.id,
     };
@@ -116,7 +116,7 @@ const Product_attributes_valuesUpdate = ({ id }) => {
                 const error = errors?.[item.register.split(".")[0]]?.name;
                 console.log(error);
                 return (
-                  <Grid key={index} item md={6} sx={{ p: "10px" }}>
+                  <Grid key={index} item md={6} xs={12} sx={{ p: 1 }}>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography variant="body1" color="text.main">
                         {item.head}

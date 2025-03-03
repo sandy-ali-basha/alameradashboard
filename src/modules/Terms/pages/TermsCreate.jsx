@@ -44,12 +44,12 @@ const TermsCreate = () => {
   return (
     <Box>
       {loading && <Loader />}
-      <Typography sx={{ color: "text.main", mb: "16px" }} variant="h5">
+      <Typography sx={{ color: "text.main", mb: 1 }} variant="h5">
         {t("Create New Term")}
       </Typography>
-      <BoxStyled sx={{ px: "24px" }}>
+      <BoxStyled sx={{ px: 2 }}>
         <Grid container component="form">
-          <Grid item md={12} sx={{ p: "10px" }}>
+          <Grid item md={12} xs={12} sx={{ p: 1 }}>
             <Typography sx={{ margin: "0 0 8px 8px" }} variant="body1" color="text.secondary">
               name arabic
             </Typography>
@@ -63,7 +63,7 @@ const TermsCreate = () => {
               helperText={errors.ar?.name?.message || ""}
             />
           </Grid>
-          <Grid item xs={12} sx={{ p: "10px" }}>
+          <Grid item xs={12} sx={{ p: 1 }}>
             <Box sx={{ margin: "0 0 8px 5px" }}>
               <Typography variant="body1" color="text.secondary" sx={{ color: "text.main" }}>
                 {t("text arabic")}
@@ -77,7 +77,7 @@ const TermsCreate = () => {
               errors={errors?.ar?.text?.message}
             />
           </Grid>
-          <Grid item md={12} sx={{ p: "10px" }}>
+          <Grid item md={12} xs={12} sx={{ p: 1 }}>
             <Typography sx={{ margin: "0 0 8px 8px" }} variant="body1" color="text.secondary">
               Name Turkish
             </Typography>
@@ -91,7 +91,7 @@ const TermsCreate = () => {
               helperText={errors.tr?.name?.message || ""}
             />
           </Grid>
-          <Grid item xs={12} sx={{ p: "10px" }}>
+          <Grid item xs={12} sx={{ p: 1 }}>
             <Box sx={{ margin: "0 0 8px 5px" }}>
               <Typography variant="body1" color="text.secondary" sx={{ color: "text.main" }}>
                 {t("text turkish")}
@@ -105,7 +105,7 @@ const TermsCreate = () => {
               errors={errors?.tr?.text?.message}
             />
           </Grid>
-          <Grid item md={12} sx={{ p: "10px" }}>
+          <Grid item md={12} xs={12} sx={{ p: 1 }}>
             <Typography sx={{ margin: "0 0 8px 8px" }} variant="body1" color="text.secondary">
               Name France
             </Typography>
@@ -119,7 +119,7 @@ const TermsCreate = () => {
               helperText={errors.fr?.name?.message || ""}
             />
           </Grid>
-          <Grid item xs={12} sx={{ p: "10px" }}>
+          <Grid item xs={12} sx={{ p: 1 }}>
             <Box sx={{ margin: "0 0 8px 5px" }}>
               <Typography variant="body1" color="text.secondary" sx={{ color: "text.main" }}>
                 {t("text France")}

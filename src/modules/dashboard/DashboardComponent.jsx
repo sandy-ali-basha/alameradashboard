@@ -1,13 +1,14 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/header/Header";
 import SideBar from "./components/sideBard/SideBar";
+import { navStore } from "store/settingsStore";
 
 export const drawerWidth = 220;
 
 const DashboardComponent = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = navStore((state) => [state.open, state.setOpen]);
 
   return (
     <Box

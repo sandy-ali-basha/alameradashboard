@@ -8,9 +8,10 @@ import { _AuthApi } from "api/auth";
 import { useTranslation } from "react-i18next";
 
 import LogoutIcon from "@mui/icons-material/Logout";
-import { settingsStore } from "store/settingsStore";
-const SettingsMenu = ({ open, hoverd }) => {
+import { navStore, settingsStore } from "store/settingsStore";
+const SettingsMenu = ({  hoverd }) => {
   const { t } = useTranslation("settingMenu");
+  const [open, setOpen] = navStore((state) => [state.open, state.setOpen]);
 
   const [mode] = settingsStore((state) => [state.setMode, state.mode]);
   const [direction] = settingsStore((state) => [

@@ -55,7 +55,7 @@ const AdminUpdate = ({ id }) => {
                 </DialogContent>
               </Box>
             ))}
-            <Grid xs={6} sx={{ p: "10px" }}>
+            <Grid md={6} xs={12} sx={{ p: 1 }}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Role</InputLabel>
                 <Select

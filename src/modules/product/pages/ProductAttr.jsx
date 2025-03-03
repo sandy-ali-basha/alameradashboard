@@ -24,6 +24,7 @@ import { _Product } from "api/product/product";
 import Loader from "components/shared/Loader";
 import ButtonLoader from "components/shared/ButtonLoader";
 import settings from "assets/images/settings.png";
+import { BoxStyled } from "components/styled/BoxStyled";
 
 let schema = yup.object().shape({
   attribute_id: yup.string().trim().required("Product attributes is required"),
@@ -75,33 +76,25 @@ const ProductAttr = ({ id, open, setOpen, attr, notDialog }) => {
 
   const handleAddAttr = ({ data }) => {
     setLoading(true);
-    // Map over the array of ids to create a request for each
-    const requests = id.map((id) => {
-      // Return the promise for the request
-      const newData = {
-        ...data,
-        product_id: id, // Add product_id to the form data
-      };
-      return _Product.attribute({
-        editedID: id,
-        formData: newData,
-      });
-    });
+     const newData = {
+      ...data,
+      product_id: id, // Add product_id to the form data
+    };
 
     // Execute all requests concurrently
-    Promise.all(requests)
+    Promise.all(newData)
       .then((responses) => {
         // Handle successful responses
         responses.forEach((res, index) => {
           if (res.code === 200) {
             setALert((prev) => [
               ...prev,
-              `categories for Product ${id[index]} saved successfully.`,
+              `categories for Product saved successfully.`,
             ]);
           } else {
             setALert((prev) => [
               ...prev,
-              `Failed to save categories for Product ${id[index]}.`,
+              `Failed to save categories for Product .`,
             ]);
           }
         });
@@ -150,7 +143,7 @@ const ProductAttr = ({ id, open, setOpen, attr, notDialog }) => {
           <img src={settings} alt="" style={{ width: "100%" }} />
         </Box>
         <Grid container component="form" key={id}>
-          <Grid item xs={12} sx={{ p: "10px" }}>
+          <Grid item xs={12} sx={{ p: 1 }}>
             {attr && (
               <Typography variant="body1">Current categories</Typography>
             )}
@@ -201,7 +194,7 @@ const ProductAttr = ({ id, open, setOpen, attr, notDialog }) => {
           </Grid>
 
           {selectedValue && (
-            <Grid item xs={12} sx={{ p: "10px" }}>
+            <Grid item xs={12} sx={{ p: 1 }}>
               <FormControl fullWidth>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
                   <Typography color="text.main">Values</Typography>
@@ -286,12 +279,12 @@ const ProductAttr = ({ id, open, setOpen, attr, notDialog }) => {
     <>
       {loading && <Loader />}
       {notDialog ? (
-        <Card
+        <BoxStyled
           sx={{
             BoxShadow: 10,
             p: 3,
-            opacity: id.length > 0 ? "100%" : "50%",
-            pointerEvents: id.length > 0 ? "initial" : "none",
+            opacity: id ? "100%" : "50%",
+            pointerEvents: id ? "initial" : "none",
           }}
         >
           {content}
@@ -301,7 +294,7 @@ const ProductAttr = ({ id, open, setOpen, attr, notDialog }) => {
                 {item}
               </Alert>
             ))}
-        </Card>
+        </BoxStyled>
       ) : (
         <Dialog open={open} onClose={handleClose}>
           {content}

@@ -6,6 +6,7 @@ import {
   IconButton,
   Tooltip,
   Button,
+  Avatar,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -37,7 +38,7 @@ const BrandIndex = () => {
   ]);
 
   const columns = useMemo(() => {
-    return [t("name"), t("operations")];
+    return [t("image"), t("name"), t("operations")];
   }, [t]);
   const [id, setID] = useState();
 
@@ -56,12 +57,18 @@ const BrandIndex = () => {
   const rows = useMemo(() => {
     return data?.data?.brands?.map((brand, id) => (
       <TableRow sx={{ height: "65px" }} key={brand.id} hover>
+        <TableCell sx={{ minWidth: 50, textAlign: "center" }}>
+          <Avatar
+            size="large"
+            src={brand?.images ? brand?.images[0] : "Null"}
+          />
+        </TableCell>
         <TableCell sx={{ minWidth: 50 }}>{brand?.name ?? "Null"}</TableCell>
 
         <TableCell
           align="center"
           sx={{
-            minWidth: 200,
+            minWidth: {md:200 ,xs:100},
           }}
         >
           <IconButton onClick={() => handleEdit(brand?.id)}>

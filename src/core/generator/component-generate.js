@@ -396,15 +396,15 @@ const ${ComponentName}Create = () => {
   return (
     <Box>
       {loading && <Loader />}
-      <Typography sx={{ color: "text.main", mb: "16px" }} variant="h5">
+      <Typography sx={{ color: "text.main", mb: 1 }} variant="h5">
         {t("Create ${ComponentName}}")}
       </Typography>
-      <BoxStyled sx={{ px: "24px" }}>
+      <BoxStyled sx={{ px: 2 }}>
         <Box component="form">
           <Grid  container spacing={2}>
             {/* * //details */}
             {details.map((item, index) => (
-              <Grid item key={index} xs={6} sx={{ p: "10px" }}>
+              <Grid item key={index} md={6} xs={12} sx={{ p: 1 }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
                   <Typography  variant="body1" color="text.main">{item.head}</Typography>
                 </Box>
@@ -533,7 +533,7 @@ const ${ComponentName}Index = () => {
         <TableCell
           align="center"
           sx={{
-            minWidth: 200,
+            minWidth: {md:200 ,xs:100},
           }}
         >
           <IconButton onClick={() => handleEdit(${fileName}?.id)}>
@@ -707,7 +707,7 @@ const ${ComponentName}Update = ({ id }) => {
               {details?.map((item, index) => {
                 const error = errors?.[item.register.split(".")[0]]?.name;
                 return (
-                  <Grid key={index} item md={6} sx={{ p: "10px" }}>
+                  <Grid key={index} item md={6} xs={12} sx={{ p: 1 }}>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography  variant="body1" color="text.main">{item.head}</Typography>
                     </Box>

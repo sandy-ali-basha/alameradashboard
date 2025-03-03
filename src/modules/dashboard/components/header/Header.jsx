@@ -4,24 +4,15 @@ import { AppBar } from "../styled/AppBar";
 import SettingsMenu from "./SettingsMenu";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { settingsStore } from "store/settingsStore";
-import { useTranslation } from "react-i18next";
-import Qatar from "assets/icons/qatar.png";
-import Uk from "assets/icons/uk.png";
+import { navStore, settingsStore } from "store/settingsStore";
+import { Menu } from "@mui/icons-material";
 
-const Header = ({ open }) => {
-  const { i18n, t } = useTranslation("header");
+const Header = () => {
+  const [open, setOpen] = navStore((state) => [state.open, state.setOpen]);
 
   const [setMode, mode] = settingsStore((state) => [state.setMode, state.mode]);
-  const [direction, setDirection] = settingsStore((state) => [
-    state.direction,
-    state.setDirection,
-  ]);
 
-  const toggleLang = () => {
-    setDirection(direction === "ltr" ? "rtl" : "ltr");
-    i18n.changeLanguage(direction === "ltr" ? "ar" : "fr");
-  };
+  const toggleOpen = () => setOpen(!open);
 
   return (
     <AppBar
@@ -33,7 +24,11 @@ const Header = ({ open }) => {
       open={open}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box></Box>
+        <Box>
+          <IconButton onClick={toggleOpen}>
+            <Menu />
+          </IconButton>
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -41,21 +36,6 @@ const Header = ({ open }) => {
             marginRight: "20px",
           }}
         >
-          {/* <IconButton sx={{ width: "39px" }} onClick={toggleLang}>
-            <Tooltip
-              title={
-                direction === "ltr"
-                  ? t("arabic language")
-                  : t("France language")
-              }
-            >
-              {direction === "ltr" ? (
-                <img src={Qatar} width="100%" alt="AR" />
-              ) : (
-                <img src={Uk} width="100%" alt="UK" />
-              )}
-            </Tooltip>
-          </IconButton> */}
           <IconButton
             onClick={() => setMode(mode === "dark" ? "light" : "dark")}
             sx={{
@@ -70,9 +50,6 @@ const Header = ({ open }) => {
               )}
             </Tooltip>
           </IconButton>
-          {/* <IconButton>
-            <NotificationsRoundedIcon sx={{ color: "darkGray.main" }} />
-          </IconButton> */}
           <SettingsMenu />
         </Box>
       </Toolbar>

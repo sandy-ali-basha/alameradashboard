@@ -42,3 +42,12 @@ export const settingsStore = create((set) => ({
     storeMode(mode);
   },
 }));
+
+export const navStore = create((set) => ({
+  open: true,
+  setOpen: (value) => {
+    set(() => ({ open: value }));
+  },
+}));
+
+

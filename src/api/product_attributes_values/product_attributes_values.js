@@ -19,6 +19,6 @@ export const _Product_attributes_values = {
       .then((res) => res?.data),
   AddImage: ({ editedID, formData }) =>
     _axios
-      .post("product_attributes_values/" + editedID + "/image", formData)
+      .post("product-attributes-values/" + editedID + "/image", formData)
       .then((res) => res?.data),
 };

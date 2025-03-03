@@ -65,7 +65,7 @@ const TermsIndex = () => {
         <TableCell
           align="center"
           sx={{
-            minWidth: 200,
+            minWidth: {md:200 ,xs:100},
           }}
         >
           <IconButton onClick={() => handleEdit(term?.id)}>

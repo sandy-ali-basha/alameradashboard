@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
-import { useMutation } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { _Product } from "api/product/product";
 import Loader from "components/shared/Loader";
 import ButtonLoader from "components/shared/ButtonLoader";
@@ -94,6 +94,7 @@ const AddImage = ({ id, open, setOpen, notDialog }) => {
         setLoading(false);
       });
   };
+ const queryClient = useQueryClient();
   async function createPost(data) {
     if (notDialog) {
       handleAddImages({ data });
@@ -108,15 +109,14 @@ const AddImage = ({ id, open, setOpen, notDialog }) => {
             handleDialogClose();
           }
           setLoading(false);
+         queryClient.invalidateQueries(["product_attributes_values"]);
         });
     }
   }
 
   const handleUpdate = (input) => {
     const formData = new FormData();
-    images.forEach((image, idx) =>
-      formData.append("images[" + idx + "]", image)
-    );
+    images.forEach((image, idx) => formData.append("image", image));
     mutate(formData);
     setLoading(true);
   };

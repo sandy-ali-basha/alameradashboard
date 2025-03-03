@@ -133,7 +133,7 @@ const BrandUpdate = ({ id }) => {
           <>
             <Grid container component="form" key={id}>
               {details?.map((item, index) => (
-                <Grid key={index} item md={6} sx={{ p: "10px" }}>
+                <Grid key={index} item md={6} xs={12} sx={{ p: 1 }}>
                   <Box sx={{ margin: "0 0 8px 5px" }}>
                     <Typography
                       sx={{ margin: "0 0 8px 8px" }}

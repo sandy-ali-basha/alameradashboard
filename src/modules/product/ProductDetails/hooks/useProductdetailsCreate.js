@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { _Productdetails } from "api/productdetails/productdetails";
 
 const schema = yup.object().shape({
-  fr: yup.object().shape({
+  tr: yup.object().shape({
     title: yup.string().required("Title is required"),
     description: yup.string().required("Description is required"),
   }),
@@ -97,17 +97,17 @@ export const useProductdetailsCreate = ({ id }) => {
   };
 
   const languages = [
-    { code: "fr", name: "France" },
+    { code: "tr", name: "France" },
   ];
   const Discription = [
     {
       head: t("Description"),
       type: "text",
       placeholder: t("Description"),
-      name: "en.description",
-      register: "en.description",
-      error: "en.description",
-      helperText: "en.description",
+      name: "tr.description",
+      register: "tr.description",
+      error: "tr.description",
+      helperText: "tr.description",
     },
   ];
   const details = languages.map((lang, index) => ({

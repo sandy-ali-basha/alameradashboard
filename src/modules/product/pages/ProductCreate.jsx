@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Button,
-  Stepper,
-  Step,
-  StepLabel,
-  Box,
-} from "@mui/material";
+import { Grid, Button, Stepper, Step, StepLabel, Box } from "@mui/material";
 import CreateProductDetails from "../components/CreateProductDetails";
 import AddImages from "./AddImages";
 import AddImagesSlider from "./AddImagesSlider";
@@ -23,7 +16,6 @@ const steps = [
 ];
 
 const ProductCreate = () => {
-
   const [newProductId, setNewProductId] = useState();
   const [activeStep, setActiveStep] = useState(0);
 
@@ -33,6 +25,9 @@ const ProductCreate = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
+        <CreateProductDetails setNewProductId={setNewProductId} />
+      </Grid>
+      {/* <Grid item xs={12}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label, index) => (
             <Step key={index}>
@@ -73,7 +68,7 @@ const ProductCreate = () => {
             {activeStep === steps.length - 1 ? "Finish" : "Next"}
           </Button>
         </Box>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };

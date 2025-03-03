@@ -66,7 +66,7 @@ const AddImage = ({ id, open, setOpen }) => {
 
   const handleUpdate = (input) => {
     const formData = new FormData();
-    image.forEach((image) => formData.append("image", image));
+    formData.append("image", image)
 
     mutate(formData);
     setLoading(true);

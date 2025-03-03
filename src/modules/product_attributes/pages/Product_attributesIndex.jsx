@@ -83,7 +83,7 @@ const Product_attributesIndex = () => {
         <TableCell
           align="center"
           sx={{
-            minWidth: 200,
+            minWidth: {md:200 ,xs:100},
           }}
         >
           <IconButton onClick={() => handleEdit(product_attributes?.id)}>

@@ -147,7 +147,7 @@ const BlogUpdate = ({ id }) => {
               {details?.map((item, index) => {
                 const error = errors?.[item.register.split(".")[0]]?.title;
                 return (
-                  <Grid key={index} item md={6} sx={{ p: "10px" }}>
+                  <Grid key={index} item md={6} xs={12} sx={{ p: 1 }}>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography variant="body1" color="text.main">
                         {item.head}
@@ -174,7 +174,7 @@ const BlogUpdate = ({ id }) => {
             const error = errors?.[item.register.split(".")[0]]?.text;
 
             return (
-              <Grid item key={index} xs={12} sx={{ p: "10px" }}>
+              <Grid item key={index} xs={12} sx={{ p: 1 }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
                   <Typography variant="body1" color="text.main">
                     {item.head}

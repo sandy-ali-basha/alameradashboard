@@ -59,12 +59,12 @@ const AdminIndex = () => {
   const rows = useMemo(() => {
     return data?.data?.map((admin, id) => (
       <TableRow sx={{ height: "65px" }} key={admin.id} hover={true}>
-        <TableCell sx={{ minWidth: 200 }}>{admin?.name ?? "Null"}</TableCell>
+        <TableCell sx={{ minWidth: {md:200 ,xs:100} }}>{admin?.name ?? "Null"}</TableCell>
 
-        <TableCell sx={{ minWidth: 200 }} align="center">
+        <TableCell sx={{ minWidth: {md:200 ,xs:100} }} align="center">
           {admin?.email ?? "Null"}
         </TableCell>
-        <TableCell sx={{ minWidth: 200 }} align="center">
+        <TableCell sx={{ minWidth: {md:200 ,xs:100} }} align="center">
           {admin?.roles?.map((item, index) => (
             <div key={index}>{item?.name}</div>
           )) ?? "Null"}
@@ -73,7 +73,7 @@ const AdminIndex = () => {
         <TableCell
           align="center"
           sx={{
-            minWidth: 200,
+            minWidth: {md:200 ,xs:100},
             display: "flex",
             gap: 1,
             alignItems: "center",

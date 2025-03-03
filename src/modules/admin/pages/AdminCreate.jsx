@@ -37,14 +37,14 @@ const AdminCreate = () => {
     <Box>
       {loading && <Loader />}
 
-      <Typography sx={{ color: "text.main", mb: "16px" }} variant="h5">
+      <Typography sx={{ color: "text.main", mb: 1 }} variant="h5">
         {t("Create Admin")}
       </Typography>
-      <BoxStyled sx={{ px: "24px" }}>
+      <BoxStyled sx={{ px: 2 }}>
         <Box component="form">
           <Grid container spacing={2}>
             {details.map((item, index) => (
-              <Grid key={index} item xs={6} sx={{ p: "10px" }}>
+              <Grid key={index} item md={6} xs={12} sx={{ p: 1 }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
                   <Typography variant="body1" color="text.secondary">
                     {item.head}
@@ -82,7 +82,7 @@ const AdminCreate = () => {
                 />
               </Grid>
             ))}
-            <Grid xs={6} sx={{ p: "10px" }}>
+            <Grid md={6} xs={12} sx={{ p: 1 }}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Role</InputLabel>
                 <Select

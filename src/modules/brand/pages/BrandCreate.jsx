@@ -22,14 +22,14 @@ const BrandCreate = () => {
   return (
     <Box>
       {loading && <Loader />}
-      <Typography sx={{ color: "text.main", mb: "16px" }} variant="h5">
+      <Typography sx={{ color: "text.main", mb: 1 }} variant="h5">
         {t("Create Brand}")}
       </Typography>
-      <BoxStyled sx={{ px: "24px" }}>
+      <BoxStyled sx={{ px: 2 }}>
         <Box component="form">
           <Grid container spacing={2}>
             {/* * //details */}
-            <Grid item md={12} sx={{ p: "10px" }}>
+            <Grid item md={12} xs={12} sx={{ p: 1 }}>
               <Typography
                 sx={{ margin: "0 0 8px 8px" }}
                 color="text.main"
@@ -48,7 +48,7 @@ const BrandCreate = () => {
                 helperText={errors?.tr?.name?.message || ""}
               />
             </Grid>
-            <Grid item md={12} sx={{ p: "10px" }}>
+            <Grid item md={12} xs={12} sx={{ p: 1 }}>
               <Typography
                 sx={{ margin: "0 0 8px 8px" }}
                 color="text.main"
@@ -66,7 +66,7 @@ const BrandCreate = () => {
                 helperText={errors?.ar?.name?.message || ""}
               />
             </Grid>
-            <Grid item md={12} sx={{ p: "10px" }}>
+            <Grid item md={12} xs={12} sx={{ p: 1 }}>
               <Typography
                 sx={{ margin: "0 0 8px 8px" }}
                 color="text.main"

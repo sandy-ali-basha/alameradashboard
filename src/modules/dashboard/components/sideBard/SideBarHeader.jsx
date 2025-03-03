@@ -1,32 +1,14 @@
 import React, { memo, useMemo } from "react";
 import { DrawerHeader } from "../styled/DrawerHeader";
-import IconButton from "@mui/material/IconButton";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import Vector from "assets/images/logolightSmall.png";
 
 import { useTheme } from "@mui/material";
 import { Box } from "@mui/material";
 import RenderLogo from "./RenderLogo";
+import { navStore } from "store/settingsStore";
 
-const SideBarHeader = ({ setOpen, open, hoverd }) => {
-  const theme = useTheme();
-
-  const toggleOpen = () => setOpen((prevState) => !prevState);
-
-  const arrowAnim = useMemo(
-    () => ({
-      "&.MuiSvgIcon-root path:first-of-type": {
-        color: "primary.contrastText",
-        opacity: "0.48",
-      },
-      "&.MuiSvgIcon-root path:nth-of-type(2)": {
-        color: "primary.contrastText",
-      },
-      transition: "0.1s",
-    }),
-    []
-  );
+const SideBarHeader = ({ hoverd }) => {
+  const [open, setOpen] = navStore((state) => [state.open, state.setOpen]);
 
   return (
     <DrawerHeader
@@ -57,27 +39,9 @@ const SideBarHeader = ({ setOpen, open, hoverd }) => {
             animationDelay: "500ms",
             backgroundRepeat: "no-repeat",
           }}
-        ></Box>
+        ><RenderLogo /></Box>
       )}
-      {(open || hoverd) && (
-        <IconButton onClick={toggleOpen}>
-          {theme.direction === "rtl" ? (
-            <KeyboardDoubleArrowRightIcon
-              sx={{
-                ...arrowAnim,
-                transform: !open ? "rotate(180deg)" : "none",
-              }}
-            />
-          ) : (
-            <KeyboardDoubleArrowLeftIcon
-              sx={{
-                ...arrowAnim,
-                transform: !open ? "rotate(180deg)" : "none",
-              }}
-            />
-          )}
-        </IconButton>
-      )}
+  
     </DrawerHeader>
   );
 };

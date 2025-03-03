@@ -106,7 +106,7 @@ const Product_attributesUpdate = ({ id }) => {
               {details?.map((item, index) => {
                 const error = errors?.[item.register.split(".")[0]]?.name;
                 return (
-                  <Grid key={index} item md={6} sx={{ p: "10px" }}>
+                  <Grid key={index} item md={6} xs={12} sx={{ p: 1 }}>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography variant="body1" color="text.main">
                         {item.head}

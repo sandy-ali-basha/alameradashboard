@@ -123,7 +123,7 @@ const TermsUpdate = () => {
         {!!data && (
           <>
             <Grid container component="form">
-              <Grid item md={12} sx={{ p: "10px" }}>
+              <Grid item md={12} xs={12} sx={{ p: 1 }}>
                 <Typography
                   sx={{ margin: "0 0 8px 8px" }}
                   variant="body1"
@@ -140,7 +140,7 @@ const TermsUpdate = () => {
                   helperText={errors.ar?.name?.message || ""}
                 />
               </Grid>
-              <Grid item xs={12} sx={{ p: "10px" }}>
+              <Grid item xs={12} sx={{ p: 1 }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
                   <Typography
                     variant="body1"
@@ -162,7 +162,7 @@ const TermsUpdate = () => {
                   }
                 />
               </Grid>
-              <Grid item md={12} sx={{ p: "10px" }}>
+              <Grid item md={12} xs={12} sx={{ p: 1 }}>
                 <Typography
                   sx={{ margin: "0 0 8px 8px" }}
                   variant="body1"
@@ -179,7 +179,7 @@ const TermsUpdate = () => {
                   helperText={errors.tr?.name?.message || ""}
                 />
               </Grid>
-              <Grid item xs={12} sx={{ p: "10px" }}>
+              <Grid item xs={12} sx={{ p: 1 }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
                   <Typography
                     variant="body1"
@@ -201,7 +201,7 @@ const TermsUpdate = () => {
                   }
                 />
               </Grid>
-              <Grid item md={12} sx={{ p: "10px" }}>
+              <Grid item md={12} xs={12} sx={{ p: 1 }}>
                 <Typography
                   sx={{ margin: "0 0 8px 8px" }}
                   variant="body1"
@@ -218,7 +218,7 @@ const TermsUpdate = () => {
                   helperText={errors.fr?.name?.message || ""}
                 />
               </Grid>
-              <Grid item xs={12} sx={{ p: "10px" }}>
+              <Grid item xs={12} sx={{ p: 1 }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
                   <Typography
                     variant="body1"

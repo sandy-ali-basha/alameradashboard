@@ -280,7 +280,7 @@ const OrdersIndex = () => {
             <TableCell sx={{ minWidth: 50 }}>
               {orders?.shipping_total ?? "Null"}
             </TableCell>
-            <TableCell sx={{ minWidth: 200 }}>
+            <TableCell sx={{ minWidth: {md:200 ,xs:100} }}>
               {orders?.created_at ?? "Null"}
             </TableCell>
             <TableCell sx={{ minWidth: 100 }} align="center">

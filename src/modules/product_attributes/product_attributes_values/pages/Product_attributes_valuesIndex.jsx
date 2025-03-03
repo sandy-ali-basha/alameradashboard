@@ -46,6 +46,7 @@ const Product_attributes_valuesIndex = () => {
       t("value arabic"),
       t("value turkish"),
       t("value France"),
+      t("image"),
       t("operations"),
     ];
   }, [t]);
@@ -83,6 +84,10 @@ const Product_attributes_valuesIndex = () => {
           <TableCell sx={{ minWidth: 50 }}>
             {product_attributes_values?.translations[1]?.value ?? "Null"}
           </TableCell>
+          <TableCell sx={{ minWidth: 50 }}>
+          <img src={product_attributes_values?.image ?? "Null"} alt="" style={{width:'50px'}}/>
+           
+          </TableCell>
           {/* <TableCell sx={{ minWidth: 120 }} align="center">
             <ChangeStatus
               id={product_attributes_values.id}
@@ -99,7 +104,7 @@ const Product_attributes_valuesIndex = () => {
           <TableCell
             align="center"
             sx={{
-              minWidth: 200,
+              minWidth: {md:200 ,xs:100},
             }}
           >
             <IconButton

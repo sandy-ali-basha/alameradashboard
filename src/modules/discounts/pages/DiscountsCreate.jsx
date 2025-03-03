@@ -34,12 +34,12 @@ const DiscountsCreate = () => {
   return (
     <Box>
       {loading && <Loader />}
-      <Typography sx={{ color: "text.main", mb: "16px" }} variant="h5">
+      <Typography sx={{ color: "text.main", mb: 1 }} variant="h5">
         {t("Create Discounts")}
       </Typography>
       <Box sx={{ display: "flex" }}>
     
-        <BoxStyled sx={{ px: "24px" }}>
+        <BoxStyled sx={{ px: 2 }}>
           <Box component="form" onSubmit={handleSubmit(handleCreate)}>
             {" "}
             {/* Use onSubmit directly */}
@@ -73,7 +73,7 @@ const DiscountsCreate = () => {
 
               {/* Render form fields */}
               {details.map((item, index) => (
-                <Grid item key={index} xs={6} sx={{ p: "10px" }}>
+                <Grid item key={index} md={6} xs={12} sx={{ p: 1 }}>
                   <Box sx={{ margin: "0 0 8px 5px" }}>
                     <Typography variant="body1" color="text.main">
                       {item.head}
@@ -91,7 +91,7 @@ const DiscountsCreate = () => {
               ))}
 
               {/* Conditionally render percentage or value based on discountType */}
-              <Grid item xs={6} sx={{ p: "10px" }}>
+              <Grid item md={6} xs={12} sx={{ p: 1 }}>
                 <Box sx={{ margin: "0 0 8px 5px" }}>
                   <Typography variant="body1" color="text.main">
                     {discountType === "percentage"
