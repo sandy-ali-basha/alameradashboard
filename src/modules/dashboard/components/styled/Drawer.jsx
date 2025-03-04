@@ -12,7 +12,6 @@ export const Drawer = styled(MuiDrawer, {
   boxSizing: "border-box",
   height: 'calc(100vh - 16px)',
   overflowY:'scroll',
-
   "& .MuiDrawer-paper": {
     height: 'calc(100vh - 16px)',
   },

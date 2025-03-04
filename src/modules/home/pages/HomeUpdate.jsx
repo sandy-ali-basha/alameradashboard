@@ -122,7 +122,7 @@ const HomeUpdate = ({ id, type }) => {
               {details?.map((item, index) => {
                 const error = errors?.[item.register.split(".")[0]]?.name;
                 return (
-                  <Grid key={index} item md={6} sx={{ p: "10px", my: 1 }}>
+                  <Grid key={index} item md={6} xs="12" sx={{ p: "10px", my: 1 }}>
                     <Box sx={{ margin: "0 0 8px 5px" }}>
                       <Typography variant="body1" color="text.main">
                         {item.head}
@@ -153,7 +153,10 @@ const HomeUpdate = ({ id, type }) => {
                   alignItems: "center",
                 }}
               >
-                <img src={data?.image} alt="item" style={{ width: "20vw" }} />
+              <Box sx={{ width:{md: "20vw",xs:'70vw'} }}>
+
+                <img src={data?.image} alt="item" style={{width:'100%'}}  />
+              </Box>
                 <Typography variant="body1" color="initial" sx={{ mt: 2 }}>
                   replace current image
                 </Typography>

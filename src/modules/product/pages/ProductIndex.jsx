@@ -24,6 +24,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { DeleteSweep } from "@mui/icons-material";
 import { BoxStyled } from "components/styled/BoxStyled";
 import UpdateRegionPrice from "./UpdateRegionPrice";
+import { useMediaQuery } from "@mui/material";
 
 const ProductIndex = () => {
   const {
@@ -79,7 +80,7 @@ const ProductIndex = () => {
       actions: product,
     }));
   }, [filteredData]); // Dependency array
-
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
   // Define columns for the DataGrid
   const gridColumns = [
     {
@@ -230,7 +231,7 @@ const ProductIndex = () => {
           justifyContent: "space-between",
           alignItems: "center",
           mb: 1,
-          width: `calc(100% - 24px)`,
+          width: isSmallScreen ? "95vw" : `calc(100% - 40px)`,
         }}
       >
         <Typography variant="h5" sx={{ color: "text.main" }}>
@@ -265,7 +266,7 @@ const ProductIndex = () => {
         sx={{
           display: "flex",
           flexGrow: 1,
-          width: `calc(100% - 24px)`,
+          width: isSmallScreen ? "95vw" : `calc(100% - 40px)`,
           overflow: "scroll",
           scrollbarWidth: "none",
           py: 0,
@@ -282,8 +283,10 @@ const ProductIndex = () => {
               "--DataGrid-containerBackground": "card.main",
               "--DataGrid-pinnedBackground": "card.main",
               "--unstable_DataGrid-overlayBackground": "card.main",
+              minWidth: "800px",
             },
           }}
+          autoHeight
           rows={rows}
           columns={gridColumns}
           initialState={{

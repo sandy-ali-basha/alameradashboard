@@ -20,7 +20,8 @@ const colors = {
   },
   background: {
     main: "#f7f6f9",
-    paper: "rgb(46 196 182 / 80%)",
+    paper: "#f7f6f9",
+    navBg: "rgb(46 196 182 / 80%)",
   },
   edit: {
     main: "#2f2b3d6b",

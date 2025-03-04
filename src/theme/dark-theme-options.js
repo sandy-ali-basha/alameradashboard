@@ -2,7 +2,8 @@
 const colors = {
   background: {
     main: "#444545",
-    paper: "#718483",
+    navBg: "#718483",
+    paper: "#444545",
   },
   extrenal: {
     main: "#444545",

@@ -19,6 +19,7 @@ import {
   ShoppingCartCheckoutRounded,
   StorefrontRounded,
 } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
 
 import { navStore } from "store/settingsStore";
 import { drawerWidth } from "modules/dashboard/DashboardComponent";
@@ -157,7 +158,7 @@ const SideBar = () => {
     if (role === "order_admin") return orders_admin;
     else return [];
   };
-
+  const theme = useTheme();
   return (
     <Drawer
       variant={isMobile ? "temporary" : "permanent"}
@@ -172,6 +173,7 @@ const SideBar = () => {
           m: isMobile ? "4px" : "8px",
           borderRight: "none",
           width: isMobile ? drawerWidth : open ? drawerWidth : 72,
+          background:theme.palette.background.navBg
         },
       }}
     >

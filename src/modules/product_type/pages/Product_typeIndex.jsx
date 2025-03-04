@@ -101,7 +101,6 @@ const Product_typeIndex = () => {
             justifyContent: "space-between",
             alignItems: "center",
             mb: 2 , px:3,
-            px:3,
           }}
         >
           <Typography sx={{ color: "text.main" }} variant="h5">

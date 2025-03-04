@@ -66,86 +66,209 @@ const HomeIndex = () => {
         id={createdID}
       />
 
-      <Box
-        sx={{
-          width: { sl: "300px" },
-          backgroundColor: { xs: "background.main" },
-          ml: { xs: "0px" },
-        }}
+      <BoxStyled
+        sx={{ my:2, px: 2,  }}
       >
         <Typography sx={{ my: 2 }} variant="body1" color="initial">
           Navbar
         </Typography>
-        <BoxStyled
-          sx={{ px: "10px", display: "flex", justifyContent: "space-evenly" }}
-        >
-          {navData?.data?.navbar?.map((item, idx) => (
-            <Card key={idx}>
-              <CardContent sx={{ display: "flex", gap: 3 }}>
-                <Typography variant="body1">{item.text}</Typography>
-                <Typography variant="body1">{item.link}</Typography>
-                <Edit onClick={() => handleEditNav(item?.id)} />
-              </CardContent>
-            </Card>
-          ))}
-        </BoxStyled>
+        <Box sx={{display: "flex", justifyContent: "space-evenly"}}>
+        {navData?.data?.navbar?.map((item, idx) => (
+          <Card key={idx}>
+            <CardContent sx={{ display: "flex", gap: 3 }}>
+              <Typography variant="body1">{item.text}</Typography>
+              <Typography variant="body1">{item.link}</Typography>
+              <Edit onClick={() => handleEditNav(item?.id)} />
+            </CardContent>
+          </Card>
+        ))}
+
+        </Box>
+      </BoxStyled>
+
+      <BoxStyled sx={{ my:2, px: 2 }}>
         <Typography sx={{ my: 2 }} variant="body1" color="initial">
           Slider 1
         </Typography>
-        <BoxStyled sx={{ px: "10px" }}>
-          {data?.data?.home_sections
-            ?.filter((section) => section.type === "slider") // Filter sections of type "banner"
-            .map((section, idx) => (
-              <Box key={section.id}>
-                {section.items.map((item) => (
-                  <Card key={item.id} sx={{ mt: 2 }}>
-                    <CardMedia
-                      component="img"
-                      height="300"
-                      image={item.image}
-                      alt={item.title}
-                    />
-                    <CardContent>
-                      <Typography variant="h6">{item.title}</Typography>
-                      <Typography variant="body2">
-                        {item.description}
-                      </Typography>
-                      <Button
-                        href={item.cta_link}
-                        target="_blank"
-                        variant="contained"
-                        sx={{ mt: 1 }}
-                      >
-                        {item.cta_link}
-                      </Button>
-                    </CardContent>
-                    <CardActions>
-                      <IconButton
-                        onClick={() => handleEdit(item?.id, "slider")}
-                      >
-                        <Edit />
-                      </IconButton>
-                    </CardActions>
-                  </Card>
-                ))}
-              </Box>
-            ))}
-        </BoxStyled>
+        {data?.data?.home_sections
+          ?.filter((section) => section.type === "slider") // Filter sections of type "banner"
+          .map((section, idx) => (
+            <Box key={section.id}>
+              {section.items.map((item) => (
+                <Card key={item.id} sx={{ mt: 2 }}>
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    
+                    image={item.image}
+                    alt={item.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6">{item.title}</Typography>
+                    <Typography variant="body2">{item.description}</Typography>
+                    <Button
+                      href={item.cta_link}
+                      target="_blank"
+                      variant="contained"
+                      sx={{ mt: 1 }}
+                    >
+                      link
+                    </Button>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton onClick={() => handleEdit(item?.id, "slider")}>
+                      <Edit />
+                    </IconButton>
+                  </CardActions>
+                </Card>
+              ))}
+            </Box>
+          ))}
+      </BoxStyled>
+
+      <BoxStyled sx={{ my:2, px: 2 }}>
         <Typography sx={{ my: 2 }} variant="body1" color="initial">
           Slider 2
         </Typography>
-        <BoxStyled sx={{ px: "10px" }}>
-          {data?.data?.home_sections
-            ?.filter((section) => section.type === "slider2") // Filter sections of type "banner"
-            .map((section, idx) => (
-              <Box key={section.id}>
-                <IconButton
-                  onClick={() => handleCreate(section?.id, "slider2")}
-                >
-                  <Add />
-                </IconButton>
-                {section.items.map((item) => (
-                  <Card key={item.id} sx={{ mt: 2 }}>
+        {data?.data?.home_sections
+          ?.filter((section) => section.type === "slider2") // Filter sections of type "banner"
+          .map((section, idx) => (
+            <Box key={section.id}>
+              <IconButton onClick={() => handleCreate(section?.id, "slider2")}>
+                <Add />
+              </IconButton>
+              {section.items.map((item) => (
+                <Card key={item.id} sx={{ mt: 2 }}>
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    image={item.image}
+                    alt={item.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6">{item.title}</Typography>
+                    <Typography variant="body2">{item.description}</Typography>
+                    <Button 
+                      href={item.cta_link}
+                      target="_blank"
+                      variant="contained"
+                      sx={{ mt: 1 }}
+                    >
+                      link
+                    </Button>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton onClick={() => handleEdit(item?.id, "slider")}>
+                      <Edit />
+                    </IconButton>
+                  </CardActions>
+                </Card>
+              ))}
+            </Box>
+          ))}
+      </BoxStyled>
+
+      <BoxStyled sx={{ my:2, px: 2 }}>
+        <Typography sx={{ my: 2 }} variant="body1" color="initial">
+          collections
+        </Typography>
+        {data?.data?.home_sections
+          ?.filter((section) => section.type === "collections") // Filter sections of type "banner"
+          .map((section, idx) => (
+            <Grid container key={section.id}>
+              <IconButton onClick={() => handleCreate(section?.id, "slider")}>
+                <Add />
+              </IconButton>
+              {section.items.map((item) => (
+                <Grid item md="4" sm="6" xs="12" key={item.id} sx={{ mt: 2, p: 1 }}>
+                  <CardMedia
+                    component="img"
+                    height="250"
+                    image={item.image}
+                    alt={item.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" color="initial">
+                      {item.title}
+                    </Typography>
+                    <Button
+                      href={item.cta_link}
+                      target="_blank"
+                      variant="outlined"
+                      sx={{ mt: 1 }}
+                    >
+                      link
+                    </Button>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton
+                      onClick={() => handleEdit(item?.id, "collections")}
+                    >
+                      <Edit />
+                    </IconButton>
+                  </CardActions>
+                </Grid>
+              ))}
+            </Grid>
+          ))}
+      </BoxStyled>
+
+      <BoxStyled sx={{ my:2, px: 2 }}>
+        <Typography sx={{ my: 2 }} variant="body1" color="initial">
+          categories
+        </Typography>
+        {data?.data?.home_sections
+          ?.filter((section) => section.type === "categories") // Filter sections of type "banner"
+          .map((section, idx) => (
+            <Grid container key={section.id}>
+              {section.items.map((item) => (
+                <Grid item md="2" sm="6" xs="12" key={item.id} sx={{ p: 1 }}>
+                  <a
+                    href={item.cta_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <CardMedia
+                      component="img"
+                      sx={{aspectRatio:'1'}}
+                      image={item.image}
+                      alt={item.title}
+                    />
+                    <CardContent>
+                      <Typography variant="h6">{item.title}</Typography>
+                      <Typography variant="body1">
+                        {item.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <IconButton
+                        onClick={() => handleEdit(item?.id, "categories")}
+                      >
+                        <Edit />
+                      </IconButton>
+                    </CardActions>
+                  </a>
+                </Grid>
+              ))}
+            </Grid>
+          ))}
+      </BoxStyled>
+
+      <BoxStyled sx={{ my:2, px: 2 }}>
+        <Typography sx={{ my: 2 }} variant="body1" color="initial">
+          Two Items
+        </Typography>
+        {data?.data?.home_sections
+          ?.filter((section) => section.type === "TwoItems") // Filter sections of type ""
+          .map((section, idx) => (
+            <Grid container key={section.id}>
+              {section.items.map((item) => (
+                <Grid item md="6" sm="12" xs="12" key={item.id} sx={{ p: 1 }}>
+                  <a
+                    href={item.cta_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <CardMedia
                       component="img"
                       height="300"
@@ -154,196 +277,63 @@ const HomeIndex = () => {
                     />
                     <CardContent>
                       <Typography variant="h6">{item.title}</Typography>
-                      <Typography variant="body2">
-                        {item.description}
-                      </Typography>
-                      <Button
-                        href={item.cta_link}
-                        target="_blank"
-                        variant="contained"
-                        sx={{ mt: 1 }}
-                      >
-                        {item.cta_link}
-                      </Button>
                     </CardContent>
                     <CardActions>
                       <IconButton
-                        onClick={() => handleEdit(item?.id, "slider")}
+                        onClick={() => handleEdit(item?.id, "TwoItems")}
                       >
                         <Edit />
                       </IconButton>
                     </CardActions>
-                  </Card>
-                ))}
-              </Box>
-            ))}
-        </BoxStyled>
-        <Typography sx={{ my: 2 }} variant="body1" color="initial">
-          collections
-        </Typography>
-        <BoxStyled sx={{ px: "10px" }}>
-          {data?.data?.home_sections
-            ?.filter((section) => section.type === "collections") // Filter sections of type "banner"
-            .map((section, idx) => (
-              <Grid container key={section.id}>
-                <IconButton onClick={() => handleCreate(section?.id, "slider")}>
-                  <Add />
-                </IconButton>
-                {section.items.map((item) => (
-                  <Grid item md="4" key={item.id} sx={{ mt: 2, p: 1 }}>
-                    <CardMedia
-                      component="img"
-                      height="250"
-                      image={item.image}
-                      alt={item.title}
-                    />
-                    <CardContent>
-                      <Typography variant="h6" color="initial">
-                        {item.title}
-                      </Typography>
-                      <Button
-                        href={item.cta_link}
-                        target="_blank"
-                        variant="outlined"
-                        sx={{ mt: 1 }}
-                      >
-                        {item.cta_link}
-                      </Button>
-                    </CardContent>
-                    <CardActions>
-                      <IconButton
-                        onClick={() => handleEdit(item?.id, "collections")}
-                      >
-                        <Edit />
-                      </IconButton>
-                    </CardActions>
-                  </Grid>
-                ))}
-              </Grid>
-            ))}
-        </BoxStyled>
-        <Typography sx={{ my: 2 }} variant="body1" color="initial">
-          categories
-        </Typography>
-        <BoxStyled sx={{ px: "10px" }}>
-          {data?.data?.home_sections
-            ?.filter((section) => section.type === "categories") // Filter sections of type "banner"
-            .map((section, idx) => (
-              <Grid container key={section.id}>
-                {section.items.map((item) => (
-                  <Grid item md="2" key={item.id} sx={{ p: 1 }}>
-                    <a
-                      href={item.cta_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <CardMedia
-                        component="img"
-                        height="140"
-                        image={item.image}
-                        alt={item.title}
-                      />
-                      <CardContent>
-                        <Typography variant="h6">{item.title}</Typography>
-                        <Typography variant="body1">
-                          {item.description}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <IconButton
-                          onClick={() => handleEdit(item?.id, "categories")}
-                        >
-                          <Edit />
-                        </IconButton>
-                      </CardActions>
-                    </a>
-                  </Grid>
-                ))}
-              </Grid>
-            ))}
-        </BoxStyled>
-        <Typography sx={{ my: 2 }} variant="body1" color="initial">
-          Two Items
-        </Typography>
-        <BoxStyled sx={{ px: "10px" }}>
-          {data?.data?.home_sections
-            ?.filter((section) => section.type === "TwoItems") // Filter sections of type ""
-            .map((section, idx) => (
-              <Grid container key={section.id}>
-                {section.items.map((item) => (
-                  <Grid item md="6" key={item.id} sx={{ p: 1 }}>
-                    <a
-                      href={item.cta_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <CardMedia
-                        component="img"
-                        height="300"
-                        image={item.image}
-                        alt={item.title}
-                      />
-                      <CardContent>
-                        <Typography variant="h6">{item.title}</Typography>
-                      </CardContent>
-                      <CardActions>
-                        <IconButton
-                          onClick={() => handleEdit(item?.id, "TwoItems")}
-                        >
-                          <Edit />
-                        </IconButton>
-                      </CardActions>
-                    </a>
-                  </Grid>
-                ))}
-              </Grid>
-            ))}
-        </BoxStyled>
+                  </a>
+                </Grid>
+              ))}
+            </Grid>
+          ))}
+      </BoxStyled>
+
+      <BoxStyled sx={{ my:2, px: 2 }}>
         <Typography sx={{ my: 2 }} variant="body1" color="initial">
           Banner
         </Typography>
-        <BoxStyled sx={{ px: "10px" }}>
-          {data?.data?.home_sections
-            ?.filter((section) => section.type === "banner") // Filter sections of type ""
-            .map((section, idx) => (
-              <Grid container key={section.id}>
-                {section.items.map((item) => (
-                  <Grid item md="6" key={item.id} sx={{ p: 1 }}>
-                    <CardMedia
-                      component="img"
-                      height="130"
-                      image={item.image}
-                      alt={item.title}
-                    />
-                    <CardContent>
-                      <Typography variant="h6" color="initial">
-                        {item.title}
-                      </Typography>
-                      <Typography variant="body2" color="initial">
-                        {item.description}
-                      </Typography>
-                      <Button
-                        href={item.cta_link}
-                        target="_blank"
-                        variant="outlined"
-                        sx={{ mt: 1 }}
-                      >
-                        {item.cta_link}
-                      </Button>
-                    </CardContent>
-                    <CardActions>
-                      <IconButton
-                        onClick={() => handleEdit(item?.id, "banner")}
-                      >
-                        <Edit />
-                      </IconButton>
-                    </CardActions>
-                  </Grid>
-                ))}
-              </Grid>
-            ))}
-        </BoxStyled>
-      </Box>
+        {data?.data?.home_sections
+          ?.filter((section) => section.type === "banner") // Filter sections of type ""
+          .map((section, idx) => (
+            <Grid container key={section.id}>
+              {section.items.map((item) => (
+                <Grid item md="6" xs="12" key={item.id} sx={{ p: 1 }}>
+                  <CardMedia
+                    component="img"
+                    height="130"
+                    image={item.image}
+                    alt={item.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" color="initial">
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body2" color="initial">
+                      {item.description}
+                    </Typography>
+                    <Button
+                      href={item.cta_link}
+                      target="_blank"
+                      variant="outlined"
+                      sx={{ mt: 1, }}
+                    >
+                      link
+                    </Button>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton onClick={() => handleEdit(item?.id, "banner")}>
+                      <Edit />
+                    </IconButton>
+                  </CardActions>
+                </Grid>
+              ))}
+            </Grid>
+          ))}
+      </BoxStyled>
     </>
   );
 };
