@@ -2,13 +2,21 @@
 import { useQueryClient, useMutation } from "react-query";
 import { _Productdetails } from "api/productdetails/productdetails";
 
-export const useDeleteProductdetails = ({ page, count }) => {
+export const useDeleteProductdetails = ( ) => {
   const queryClient = useQueryClient();
-  return useMutation((id) => _Productdetails.delete(id), {
+  return useMutation((id) => {
+    if (id === undefined) {
+      console.error("Mutation called with undefined id");
+      return Promise.reject("Invalid ID");
+    }
+    return _Productdetails.delete(id);
+  }, {
     onMutate: async (id) => {
-      await queryClient.cancelQueries(["productdetails", page, count]);
-      const previousData = queryClient.getQueriesData(["productdetails", page, count]);
-      queryClient.setQueryData(["productdetails", page, count], (oldQueryData) => {
+      
+      await queryClient.cancelQueries(["productdetails"]);
+      const previousData = queryClient.getQueriesData(["productdetails"]);
+      
+      queryClient.setQueryData(["productdetails"], (oldQueryData) => {
         const oldQueryDataCopy = oldQueryData?.companies.filter(
           (old) => +old.id !== +id
         );
@@ -19,10 +27,10 @@ export const useDeleteProductdetails = ({ page, count }) => {
       }
     },
     onSuccess: () => {
-      return queryClient.invalidateQueries(["productdetails", page, count]);
+      return queryClient.invalidateQueries(["productdetails"]);
     },
     onError: (_error, _hero, context) => {
-      queryClient.setQueryData(["productdetails", page, count], context.prevuiosQuery);
+      queryClient.setQueryData(["productdetails"], context.prevuiosQuery);
     },
   });
 };

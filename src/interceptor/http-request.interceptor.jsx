@@ -11,13 +11,7 @@ export const HttpRequestInterceptor = () => {
           ? `Bearer ${access_token}`
           : "";
         request.headers.Accept = "application/json";
-
-        request.headers.locale = ["fr", "ar", "tr"].includes(
-          localStorage.getItem("i18nextLng")
-        )
-          ? localStorage.getItem("i18nextLng")
-          : "fr";
-      
+        request.headers.locale = 'tr'
         }
       return request;
     },

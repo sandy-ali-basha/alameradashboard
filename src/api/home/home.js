@@ -12,5 +12,6 @@ export const _Home = {
     delete: (id) => _axios.delete(Link+'/item/' + id).then((res) => res.data),
 
     update: ({ editedID, formData }) => _axios.post( Link +'/item/' + editedID, formData).then((res) => res?.data),
+    add: ({ editedID, formData }) => _axios.post( Link +'/item', formData).then((res) => res?.data),
     updateNav: ({ editedID, formData }) => _axios.post('/navbar/' + editedID, formData).then((res) => res?.data),
 };

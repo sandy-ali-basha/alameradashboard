@@ -173,7 +173,6 @@ export const useProductCreate = ({ setNewProductId }) => {
 
       const productData = {
         ...input,
-        brand_id: 34,
         city_id: 1, // Current city_id for each request
         description: input?.tr?.description || "",
         points: 0,
@@ -182,7 +181,7 @@ export const useProductCreate = ({ setNewProductId }) => {
       // Return the promise for this POST request
       return _Product
         .post(productData, setLoading)
-        .then((res) => res.code === 200 && setNewProductId(res?.data?.id));
+        .then((res) => res.code === 200 &&navigate(-1));
 
       // Run all requests in parallel and return the promise
       // return Promise.all(requests)

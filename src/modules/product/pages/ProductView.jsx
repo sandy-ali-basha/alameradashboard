@@ -75,13 +75,13 @@ const ProductView = () => {
   // );
 
   const columns = [
+    // {
+    //   head: t("name France"),
+    //   value: data?.translations?.find((t) => t.locale === "fr")?.name,
+    // },
     {
-      head: t("name France"),
-      value: data?.translations?.find((t) => t.locale === "fr")?.name,
-    },
-    {
-      head: t("name arabic"),
-      value: data?.translations?.find((t) => t.locale === "ar")?.name,
+      head: t("name"),
+      value: data?.name,
     },
     { head: t("status"), value: data?.status },
     { head: t("sku"), value: data?.sku },
@@ -93,13 +93,13 @@ const ProductView = () => {
     { head: t("quantity"), value: data?.quantity },
   ];
   const disc = [
+    // {
+    //   head: t("description France"),
+    //   value: data?.translations?.find((t) => t.locale === "fr")?.description,
+    // },
     {
-      head: t("description France"),
-      value: data?.translations?.find((t) => t.locale === "fr")?.description,
-    },
-    {
-      head: t("description arabic"),
-      value: data?.translations?.find((t) => t.locale === "ar")?.description,
+      head: t("description"),
+      value: data?.description,
     },
    
   ];
@@ -239,7 +239,7 @@ const ProductView = () => {
                   width: "25%",
                 }}
               >
-                <IconButton
+                {/* <IconButton
                   onClick={() =>
                     handleUpdateImage(
                       `/products/${data?.id}/images/${item?.id}/gallery`,
@@ -248,7 +248,7 @@ const ProductView = () => {
                   }
                 >
                   <ModeTwoTone sx={{ color: "text.primary" }} />
-                </IconButton>
+                </IconButton> */}
                 <IconButton
                   onClick={() =>
                     handleDeleteImage(
@@ -303,16 +303,16 @@ const ProductView = () => {
                   width: "25%",
                 }}
               >
-                <IconButton
+                {/* <IconButton
                   onClick={() =>
                     handleUpdateImage(
                       `/products/${data?.id}/images/${item?.id}/gallery`,
                       "update"
                     )
-                  }
+                  } 
                 >
                   <ModeTwoTone sx={{ color: "text.primary" }} />
-                </IconButton>
+                </IconButton> */}
                 <IconButton
                   onClick={() =>
                     handleDeleteImage(

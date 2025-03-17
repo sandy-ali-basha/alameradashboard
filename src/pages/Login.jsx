@@ -40,7 +40,7 @@ const Login = () => {
       .login(input)
       .then((response) => {
         if (response.data.code === 200) {
-          navigate("/dashboard/admin");
+          navigate("/dashboard");
           setLoading(true);
           localStorage.setItem("role", response?.data?.data?.roles[0]?.name);
         }

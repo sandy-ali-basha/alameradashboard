@@ -101,7 +101,7 @@ const HomeUpdate = ({ id, type }) => {
   const hanldeUpdate = (input) => {
     const formData = new FormData();
     formData.append("type", type);
-    formData.append("image", image);
+    image && formData.append("image", image);
     formData.append("cta_link", input.cta_link);
     formData.append("title", input.title);
     formData.append("description", input.description);

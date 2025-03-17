@@ -15,23 +15,29 @@ import { useDeleteProductdetails } from "hooks/productdetails/useDeleteProductde
 import { useProductdetails } from "hooks/productdetails/useProductdetails";
 import { Box } from "@mui/material";
 import deleteImg from "assets/images/trash.png"
-const DeleteDialog = ({ id, page, count }) => {
+const DeleteDialog = ({ id}) => {
   const { t } = useTranslation("index");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const deleteproductdetails = useDeleteProductdetails({ page, count });
+  const deleteproductdetails = useDeleteProductdetails();
   const handleClickOpen = (e) => setOpen(true)
   const handleClose = () => setOpen(false)
   const { refetch } = useProductdetails();
+  
   const DeleteProductdetails = () => {
+    if (!id) {
+      console.error("DeleteProductdetails called with undefined id");
+      return;
+    }
     setLoading(true);
     deleteproductdetails.mutate(id, {
       onSuccess: () => {
         setOpen(false);
-        refetch()
+        refetch();
       },
     });
-  }
+  };
+  
   const { direction } = settingsStore();
   return (
     <React.Fragment>

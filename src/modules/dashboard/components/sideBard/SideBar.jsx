@@ -125,14 +125,20 @@ const SideBar = () => {
   const ecommerce_admin = [
     {
       name: t("Products"),
-      icon: <CategoryRounded />,
-      subOptions: [
-        { name: t("Products"), link: "/dashboard/product" },
-        { name: t("Categories"), link: "/dashboard/products/categories" },
-        { name: t("Product Type"), link: "/dashboard/product_type" },
-      ],
+      icon: <Inventory />,
+      link: "/dashboard/product",
     },
 
+    {
+      name: t("Product Type"),
+      link: "/dashboard/product_type",
+      icon: <ColorLensRounded />,
+    },
+    {
+      name: t("Categories"),
+      link: "/dashboard/products/categories",
+      icon: <CategoryRounded />,
+    },
     {
       name: t("Brands"),
       link: "/dashboard/brands",

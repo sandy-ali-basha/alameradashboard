@@ -29,33 +29,44 @@ const HomeCreate = ({ open, setOpen, type, id }) => {
       type: "text",
       placeholder: t("Link"),
       register: "cta_link",
-    },
+      },
     {
-      head: t("title english"),
+      head: t("title France"),
       type: "text",
       placeholder: t("title"),
       register: "title",
-    },
+      },
     {
-      head: t("description english"),
+      head: t("description France"),
       type: "text",
       placeholder: t("description"),
       register: "description",
-    },
+      },
     {
       head: t("title arabic"),
       type: "text",
       placeholder: t("title arabic"),
       register: "title_ar",
-    },
+      },
     {
       head: t("description arabic"),
       type: "text",
       placeholder: t("description arabic"),
       register: "description_ar",
-    },
+      },
+    {
+      head: t("title turkish"),
+      type: "text",
+      placeholder: t("title turkish"),
+      register: "title_tr",
+      },
+    {
+      head: t("description turkish"),
+      type: "text",
+      placeholder: t("description turkish"),
+      register: "description_tr",
+      },
   ];
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -90,6 +101,8 @@ const HomeCreate = ({ open, setOpen, type, id }) => {
     formData.append("description", input.description);
     formData.append("title_ar", input.title_ar);
     formData.append("description_ar", input.description_ar);
+    formData.append("title_tr", input.title_tr);
+    formData.append("description_tr", input.description_tr);
     mutate(formData);
     setLoading(true);
   };
@@ -98,7 +111,7 @@ const HomeCreate = ({ open, setOpen, type, id }) => {
     <>
       {loading && <Loader />}
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle sx={{ color: "text.main" }}>{t("Edit Row")}</DialogTitle>
+        <DialogTitle sx={{ color: "text.main" }}>{t("Add new")}</DialogTitle>
 
         <Grid container component="form">
           {details?.map((item, index) => {
@@ -114,7 +127,6 @@ const HomeCreate = ({ open, setOpen, type, id }) => {
                   sx={{ width: "100%" }}
                   type={item.type}
                   placeholder={item.placeholder}
-                  defaultValue={item.defaultValue}
                   name={item.register}
                   {...register(item.register)}
                   error={!!error}
@@ -136,7 +148,7 @@ const HomeCreate = ({ open, setOpen, type, id }) => {
             }}
           >
             <Typography variant="body1" color="initial" sx={{ mt: 2 }}>
-              replace current image
+              add new image
             </Typography>
             <Image
               errors={errors?.image?.message}

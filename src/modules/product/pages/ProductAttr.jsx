@@ -181,7 +181,7 @@ const ProductAttr = ({ id, open, setOpen, attr, notDialog }) => {
                     {product_attributes &&
                       product_attributes.map((item) => (
                         <MenuItemStyled value={item.id} key={item.id}>
-                          <Box style={{ color: "text.main" }}>{item.title}</Box>
+                          <Box style={{ color: "text.main" }}>{item?.translations[1]?.title}</Box>
                         </MenuItemStyled>
                       ))}
                   </SelectStyled>
@@ -229,7 +229,7 @@ const ProductAttr = ({ id, open, setOpen, attr, notDialog }) => {
                     >
                       {product_attributes_values?.map((item) => (
                         <MenuItemStyled value={item.id} key={item.id}>
-                          <Box style={{ color: "text.main" }}>{item.value}</Box>
+                          <Box style={{ color: "text.main" }}>{item?.translations[0]?.value}</Box>
                         </MenuItemStyled>
                       ))}
                     </SelectStyled>
