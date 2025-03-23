@@ -1,11 +1,10 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Grid, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { _axios } from "interceptor/http-config";
 import { TextFieldStyled } from "components/styled/TextField";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "react-query";
@@ -13,12 +12,14 @@ import { _Home } from "api/home/home";
 import Loader from "components/shared/Loader";
 import ButtonLoader from "components/shared/ButtonLoader";
 import Image from "components/shared/Image";
+import EditorInput from "components/shared/EditorInput";
 
 const HomeCreate = ({ open, setOpen, type, id }) => {
   const { t } = useTranslation("index");
 
   const formOptions = {};
-  const { register, handleSubmit, formState, control } = useForm(formOptions);
+  const { register, handleSubmit, formState, control, setValue } =
+    useForm(formOptions);
   const { errors } = formState;
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
@@ -29,44 +30,48 @@ const HomeCreate = ({ open, setOpen, type, id }) => {
       type: "text",
       placeholder: t("Link"),
       register: "cta_link",
-      },
+    },
     {
       head: t("title France"),
       type: "text",
       placeholder: t("title"),
       register: "title",
-      },
-    {
-      head: t("description France"),
-      type: "text",
-      placeholder: t("description"),
-      register: "description",
-      },
+    },
+
     {
       head: t("title arabic"),
       type: "text",
       placeholder: t("title arabic"),
       register: "title_ar",
-      },
-    {
-      head: t("description arabic"),
-      type: "text",
-      placeholder: t("description arabic"),
-      register: "description_ar",
-      },
+    },
     {
       head: t("title turkish"),
       type: "text",
       placeholder: t("title turkish"),
       register: "title_tr",
-      },
+    },
+  ];
+  const Desc = [
+    {
+      head: t("description France"),
+      type: "text",
+      placeholder: t("description"),
+      register: "description",
+    },
+    {
+      head: t("description arabic"),
+      type: "text",
+      placeholder: t("description arabic"),
+      register: "description_ar",
+    },
     {
       head: t("description turkish"),
       type: "text",
       placeholder: t("description turkish"),
       register: "description_tr",
-      },
+    },
   ];
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -83,7 +88,7 @@ const HomeCreate = ({ open, setOpen, type, id }) => {
         setLoading(false);
       })
       .then((res) => {
-          setLoading(false);
+        setLoading(false);
         if (res.code === 200) {
           handleClose();
           queryClient.invalidateQueries(["home"]);
@@ -131,6 +136,26 @@ const HomeCreate = ({ open, setOpen, type, id }) => {
                   {...register(item.register)}
                   error={!!error}
                   helperText={error?.message || ""}
+                />
+              </Grid>
+            );
+          })}
+          {Desc?.map((item, index) => {
+            const error = errors?.[item.register.split(".")[0]]?.name;
+            return (
+              <Grid key={index} item md={12} sx={{ p: "10px", my: 1 }}>
+                <Box sx={{ margin: "0 0 8px 5px" }}>
+                  <Typography variant="body1" color="text.main">
+                    {item.head}
+                  </Typography>
+                </Box>
+
+                <EditorInput
+                  control={control}
+                  register={register}
+                  name={item.register}
+                  setValue={setValue}
+                  errors={error?.message}
                 />
               </Grid>
             );

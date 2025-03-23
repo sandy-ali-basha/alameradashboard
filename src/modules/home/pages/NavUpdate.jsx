@@ -4,7 +4,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Grid, Typography } from "@mui/material";
-import { colorStore } from "store/ColorsStore";
 import { useForm } from "react-hook-form";
 import { _axios } from "interceptor/http-config";
 import { TextFieldStyled } from "components/styled/TextField";
@@ -53,6 +52,13 @@ const NavUpdate = ({ id, setId }) => {
       placeholder: t("text arabic"),
       register: "text_ar",
       defaultValue: data?.text_ar,
+    },
+    {
+      head: t("text arabic"),
+      type: "text_ar",
+      placeholder: t("text arabic"),
+      register: "text_ar",
+      defaultValue: data?.text_tr,
     },
   ];
 

@@ -126,7 +126,10 @@ const ProductIndex = () => {
       renderCell: (params) => (
         <Chip
           label={params.value}
-          sx={{ color: "text.main", backgroundColor: "secondary.lighter" }}
+          sx={{
+            color: "text.main",
+            backgroundColor: params.value !== 'no sale' ? "primary.lighter" : "",
+          }}
         />
       ),
     },
