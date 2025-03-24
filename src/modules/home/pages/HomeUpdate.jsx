@@ -83,7 +83,7 @@ const HomeUpdate = ({ id, type }) => {
       placeholder: t("description arabic"),
       register: "description_ar",
       defaultValue: data?.description_ar,
-    },
+    },  
     {
       head: t("description turkish"),
       type: "text",
@@ -183,7 +183,7 @@ const HomeUpdate = ({ id, type }) => {
                       name={item.register}
                       setValue={setValue}
                       errors={error?.message}
-                      defaultValue={item.defaultValue}
+                      initialValue={item.defaultValue}
                     />
                   </Grid>
                 );

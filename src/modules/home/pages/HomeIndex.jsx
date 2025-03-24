@@ -107,7 +107,12 @@ const HomeIndex = () => {
                   />
                   <CardContent>
                     <Typography variant="h6">{item.title}</Typography>
-                    <Typography variant="body2">{item.description}</Typography>
+                    <Typography
+                      variant="body2"
+                      dangerouslySetInnerHTML={{
+                        __html: item.description,
+                      }}
+                    ></Typography>
                     <Button
                       href={item.cta_link}
                       target="_blank"
@@ -154,7 +159,12 @@ const HomeIndex = () => {
                   />
                   <CardContent>
                     <Typography variant="h6">{item.title}</Typography>
-                    <Typography variant="body2">{item.description}</Typography>
+                    <Typography
+                      variant="body2"
+                      dangerouslySetInnerHTML={{
+                        __html: item.description,
+                      }}
+                    ></Typography>
                     <Button
                       href={item.cta_link}
                       target="_blank"
@@ -267,9 +277,13 @@ const HomeIndex = () => {
                       <Typography color="text.primary" variant="h6">
                         {item.title}
                       </Typography>
-                      <Typography color="text.primary" variant="body1">
-                        {item.description}
-                      </Typography>
+                      <Typography
+                        color="text.primary"
+                        variant="body1"
+                        dangerouslySetInnerHTML={{
+                          __html: item.description,
+                        }}
+                      ></Typography>
                     </CardContent>
                     <CardActions>
                       <IconButton
@@ -297,46 +311,6 @@ const HomeIndex = () => {
             </>
           ))}
       </BoxStyled>
-      {/* 
-      <BoxStyled sx={{ my: 2, px: 2 }}>
-        <Typography sx={{ my: 2 }} variant="body1" color="initial">
-          Two Items
-        </Typography>
-        {data?.data?.home_sections
-          ?.filter((section) => section.type === "TwoItems") // Filter sections of type ""
-          .map((section, idx) => (
-            <Grid container key={section.id}>
-              {section.items.map((item) => (
-                <Grid item md="6" sm="12" xs="12" key={item.id} sx={{ p: 1 }}>
-                    <CardMedia
-                      component="img"
-                      height="300"
-                      image={item.image}
-                      alt={item.title}
-                    />
-                    <CardContent>
-                      <Typography color="text.primary" variant="h6">{item.title}</Typography>
-                    </CardContent>
-                    <CardActions>
-                      <IconButton
-                        onClick={() => handleEdit(item?.id, "TwoItems")}
-                      >
-                        <Edit />
-                      </IconButton>
-                    </CardActions>
-                    <Button
-                      href={item.cta_link}
-                      target="_blank"
-                      variant="outlined"
-                      sx={{ mt: 1 }}
-                    >
-                      link
-                    </Button>
-                </Grid>
-              ))}
-            </Grid>
-          ))}
-      </BoxStyled> */}
 
       <BoxStyled sx={{ my: 2, px: 2 }}>
         <Typography sx={{ my: 2 }} variant="body1" color="initial">
@@ -362,8 +336,9 @@ const HomeIndex = () => {
                       <Typography variant="h6" color="initial">
                         {item.title}
                       </Typography>
-                      <Typography variant="body2" color="initial">
-                        {item.description}
+                      <Typography variant="body2"  dangerouslySetInnerHTML={{
+                        __html: item.description,
+                      }} color="initial">
                       </Typography>
                       <Button
                         href={item.cta_link}
