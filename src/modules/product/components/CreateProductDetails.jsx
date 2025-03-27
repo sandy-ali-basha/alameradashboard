@@ -9,6 +9,7 @@ import {
   // ListItemText,
   // Checkbox,
   Select,
+  ListItemText,
   // Divider,
 } from "@mui/material";
 import { BoxStyled } from "components/styled/BoxStyled";
@@ -24,7 +25,9 @@ import Loader from "components/shared/Loader";
 import { useProductCreate } from "../hooks/useProductCreate";
 import ButtonLoader from "components/shared/ButtonLoader";
 import EditorInput from "components/shared/EditorInput";
-// import ButtonReset from "components/shared/ButtonReset";
+import SizeSelector from "./select/SizeSelector";
+import ColorSelector from "./select/ColorSelector";
+
 const CreateProductDetails = ({ setNewProductId }) => {
   const {
     handleCancel,
@@ -47,8 +50,12 @@ const CreateProductDetails = ({ setNewProductId }) => {
     // regions,
     // selectedRegion,
     // setSelectedRegions
+    selectedSizes,
+    setSelectedSizes,
+    selectedColors,
+    setSelectedColors,
   } = useProductCreate({ setNewProductId });
-  
+
   return (
     <Box>
       {loading && <Loader />}
@@ -164,6 +171,25 @@ const CreateProductDetails = ({ setNewProductId }) => {
                 )}
               </Grid>
             </Grid> */}
+
+    <Grid item xs={6} sx={{ p: "10px" }}>
+
+            <SizeSelector
+              selectedSizes={selectedSizes}
+              setSelectedSizes={setSelectedSizes}
+              errors={errors}
+            />
+            
+ </Grid>
+     <Grid item xs={6} sx={{ p: "10px" }}>
+
+            <ColorSelector
+              selectedColors={selectedColors}
+              setSelectedColors={setSelectedColors}
+              errors={errors}
+            />
+  </Grid>
+
             <Grid item md={6} xs={12} sx={{ p: 1 }}>
               {brands ? (
                 <FormControl fullWidth>
@@ -220,7 +246,6 @@ const CreateProductDetails = ({ setNewProductId }) => {
                   <SelectStyled
                     sx={{ color: "text.main", borderColor: "text.main" }}
                     {...register("product_type_id")}
-                    
                   >
                     {producttypes?.map((item) => (
                       <MenuItemStyled value={item.id} key={item.id}>
@@ -325,7 +350,7 @@ const CreateProductDetails = ({ setNewProductId }) => {
           >
             {t("Cancel")}
           </Button>
-        
+
           <ButtonLoader
             name={t("save")}
             onClick={() => handleSubmit(hanldeCreate)()}

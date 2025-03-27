@@ -26,12 +26,16 @@ let schema = yup.object().shape({
 export const useProductCreate = ({ setNewProductId }) => {
   // const [cities, setCiteies] = useState([]);
   // const [regions, setRegions] = useState([]);
-  const [selectedRegion, setSelectedRegions] = useState(null);
+
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [brands, setBrand] = useState(null);
+  const [selectedRegion, setSelectedRegions] = useState([]);
   const [selectedCities, setSelectedCities] = useState([]);
+  const [producttypes, setproducttypes] = useState(null);
+
   const { t } = useTranslation("index");
   const [loading, setLoading] = useState(false);
-  const [brands, setBrand] = useState(null);
-  const [producttypes, setproducttypes] = useState(null);
   const { data: point_price } = useSettings();
 
   const navigate = useNavigate();
@@ -68,7 +72,7 @@ export const useProductCreate = ({ setNewProductId }) => {
       setLoading(false);
       setproducttypes(res?.data?.data?.producttypes);
     });
-  }, [setValue]);
+  }, [setValue, setproducttypes]);
 
   const details = [
     {
@@ -141,61 +145,23 @@ export const useProductCreate = ({ setNewProductId }) => {
   };
 
   const hanldeCreate = (input) => {
-    if (selectedRegion) {
-      const productData = {
-        ...input,
-        region_id: selectedRegion,
-        region_price: input.price,
-        description: input?.description || " ",
-      };
-
-      // Return a single POST request
-      return _Product
-        .post(productData, setLoading)
-        .then((res) => {
-          if (res?.code === 200) navigate(-1);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
-      // If multiple cities, map them to API calls and handle them
-      // const requests = selectedCities?.map((city_id) => {
-      //   const productData = {
-      //     ...input,
-      //     city_id, // Current city_id for each request
-      //     description: input?.en?.description || "",
-      //   };
-
-      //   // Return the promise for this POST request
-      //   return _Product.post(productData, setLoading);
-      // });
-
       const productData = {
         ...input,
         city_id: 1, // Current city_id for each request
         description: input?.tr?.description || "",
         points: 0,
+        options: [
+          {
+            size: selectedSizes,
+            color: selectedColors,
+          },
+        ],
       };
 
       // Return the promise for this POST request
       return _Product
         .post(productData, setLoading)
-        .then((res) => res.code === 200 &&navigate(-1));
-
-      // Run all requests in parallel and return the promise
-      // return Promise.all(requests)
-      //   .then((res) => {
-      //     const newProductIds = res.map((response) => response?.data?.id);
-      //     setNewProductId(newProductIds); // Set the IDs as an array
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error creating products for multiple cities", error);
-      //   })
-      //   .finally(() => {
-      //     setLoading(false);
-      //   });
-    }
+        .then((res) => res.code === 200 && navigate(-1));
   };
 
   // useMemo(() => {
@@ -233,5 +199,9 @@ export const useProductCreate = ({ setNewProductId }) => {
     setSelectedCities,
     selectedRegion,
     setSelectedRegions,
+    selectedSizes,
+    setSelectedSizes,
+    selectedColors,
+    setSelectedColors,
   };
 };

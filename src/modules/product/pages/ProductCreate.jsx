@@ -1,27 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Button, Stepper, Step, StepLabel, Box } from "@mui/material";
+import { Grid} from "@mui/material";
 import CreateProductDetails from "../components/CreateProductDetails";
-import AddImages from "./AddImages";
-import AddImagesSlider from "./AddImagesSlider";
-import ProductAttr from "./ProductAttr";
-import ProductFeatures from "./ProductFeatures";
-import ProductdetailsCreate from "../ProductDetails/pages/ProductdetailsCreate";
-
-const steps = [
-  "Create Product Details",
-  "Upload Images",
-  "Add Attributes",
-  "Add Features",
-  "Finalize Product",
-];
 
 const ProductCreate = () => {
   const [newProductId, setNewProductId] = useState();
   const [activeStep, setActiveStep] = useState(0);
-
-  const handleNext = () => setActiveStep((prevStep) => prevStep + 1);
-  const handleBack = () => setActiveStep((prevStep) => prevStep - 1);
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>

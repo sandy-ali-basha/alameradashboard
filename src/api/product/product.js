@@ -28,4 +28,8 @@ export const _Product = {
     _axios.post("/attribute/" + editedID, formData).then((res) => res?.data),
   addDetails: ({ editedID, formData }) =>
     _axios.post("/accordion/" + editedID, formData).then((res) => res?.data),
+  
+  variant: ({ editedID, formData }) =>
+    _axios.post("/variants/" + editedID, formData).then((res) => res?.data),
+  
 };

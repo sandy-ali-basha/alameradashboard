@@ -17,6 +17,7 @@ import LinkIcon from "@mui/icons-material/Link";
 import ListAltRounded from "@mui/icons-material/ListAltRounded";
 import { settingsStore } from "store/settingsStore";
 import {
+  ColorizeSharp,
   DeleteTwoTone,
   PriceChangeOutlined,
 } from "@mui/icons-material";
@@ -29,11 +30,12 @@ const ProductMenu = ({
   handleEdit,
   handleView,
   handleAddImages,
+  handleUpdateColors,
   handleImagesSlider,
   handleCat,
   handleUpdatePrice,
   handleDelete,
-  navigate,
+  navigate
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -112,6 +114,19 @@ const ProductMenu = ({
           </ListItemIcon>
           <ListItemText>Add Images</ListItemText>
         </MenuItem>
+        {/* Update Colors */}
+        <MenuItem
+          onClick={() => {
+            handleUpdateColors(product?.id);
+            handleClose();
+          }}
+        >
+          <ListItemIcon>
+            <ColorizeSharp sx={{ color: "text.main" }} />
+          </ListItemIcon>
+          <ListItemText>Update Colors</ListItemText>
+        </MenuItem>
+        {/* Add Images to slider */}
         <MenuItem
           onClick={() => {
             handleImagesSlider(product?.id);
@@ -123,6 +138,7 @@ const ProductMenu = ({
           </ListItemIcon>
           <ListItemText>Add Images to slider</ListItemText>
         </MenuItem>
+
         <MenuItem
           onClick={() => {
             handleCat(product?.id, product?.attributes);
@@ -134,6 +150,7 @@ const ProductMenu = ({
           </ListItemIcon>
           <ListItemText>Link to categories</ListItemText>
         </MenuItem>
+
         <MenuItem
           onClick={() => {
             navigate("details/" + product?.id);

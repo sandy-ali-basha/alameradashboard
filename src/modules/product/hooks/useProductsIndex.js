@@ -12,6 +12,7 @@ export const useProductIndex = () => {
   const { data, isLoading } = useProduct();
   const navigate = useNavigate();
   const [id, setID] = useState();
+  const [variants, setVariants] = useState();
   const [productName, setProductName] = useState();
   const [editedID, setEditedID] = colorStore((state) => [
     state.editedID,
@@ -37,17 +38,18 @@ export const useProductIndex = () => {
       t("option"),
     ];
   }, [t]);
-  const handleCreate = () => navigate("create");
 
+  const handleCreate = () => navigate("create");
   const [OpenDelete, setOpenDelete] = useState(false);
+  const [openVariants, setOpenVariants] = useState(false);
   const [open, setOpen] = useState(false);
   const [openAttr, setOpenAttr] = useState(false);
   const [openImagesSlider, setOpenImagesSlider] = useState(false);
   const [product_attr, setProduct_attr] = useState();
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [updatePrice, setUpdatePrice] = useState(false);
-
   const [loading, setLoading] = useState(false);
+
   // Pagination state
   const handleView = useCallback(
     (id) => {
@@ -61,10 +63,18 @@ export const useProductIndex = () => {
     },
     [setEditedID]
   );
+
   const handleAddImages = useCallback((id) => {
     setID(id);
     setOpen(true);
   }, []);
+
+  const handleUpdateColors = useCallback((id,variants) => {
+    setID(id);
+    setVariants(variants);
+    setOpenVariants(true);
+  }, []);
+
   const handleDelete = useCallback((id) => {
     setID(id);
     setOpenDelete(true);
@@ -151,6 +161,7 @@ export const useProductIndex = () => {
     handleView,
     handleEdit,
     handleAddImages,
+    handleUpdateColors,
     isLoading,
     id,
     editedID,
@@ -161,6 +172,8 @@ export const useProductIndex = () => {
     setOpen,
     setOpenImagesSlider,
     setOpenDelete,
+    openVariants,
+    setOpenVariants,
     setOpenAttr,
     cityFilter,
     brandFilter,
@@ -174,6 +187,6 @@ export const useProductIndex = () => {
     updatePrice,
     setUpdatePrice,
     handleUpdatePrice,
-    productName
+    productName,
   };
 };

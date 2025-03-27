@@ -25,6 +25,7 @@ import { DeleteSweep } from "@mui/icons-material";
 import { BoxStyled } from "components/styled/BoxStyled";
 import UpdateRegionPrice from "./UpdateRegionPrice";
 import { useMediaQuery } from "@mui/material";
+import ProductColors from "./ProductColors";
 
 const ProductIndex = () => {
   const {
@@ -60,6 +61,9 @@ const ProductIndex = () => {
     updatePrice,
     setUpdatePrice,
     productName,
+    handleUpdateColors,
+    openVariants,
+    setOpenVariants
   } = useProductIndex();
 
   const rows = useMemo(() => {
@@ -187,6 +191,7 @@ const ProductIndex = () => {
           handleView={handleView}
           handleAddImages={handleAddImages}
           handleImagesSlider={handleImagesSlider}
+          handleUpdateColors={handleUpdateColors}
           handleUpdatePrice={params.row.region ? handleUpdatePrice : false}
           handleDelete={handleDelete}
           handleCat={handleCat}
@@ -210,6 +215,7 @@ const ProductIndex = () => {
         />
       )}
       {id && <DeleteDialog id={id} open={OpenDelete} setOpen={setOpenDelete} />}
+      {id && <ProductColors  id={id} open={openVariants} setOpen={setOpenVariants} />}
       {id && (
         <ProductAttr
           id={id}

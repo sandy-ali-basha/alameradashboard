@@ -331,17 +331,10 @@ export const use${ComponentName}Create = () => {
     if (form) form.reset()
   }
 
-  const hanldeCreate = (input) => {
-    const formData = new FormData()
-    const inputWithoutBirthday = { ...input };
-    delete inputWithoutBirthday.birthday;
-    for (const [key, value] of Object.entries(inputWithoutBirthday)) {
-      formData.append(key, value);
-    }
-    mutate(formData);
+   const hanldeCreate = (input) => {
+    mutate(input);
     setLoading(true);
   }
-
   const languages = [
   { code: "ar", name: "Arabic" },
     { code: "tr", name: "Turkish" },

@@ -101,7 +101,6 @@ const ProductView = () => {
       head: t("description"),
       value: data?.description,
     },
-   
   ];
 
   const handleUpdateImage = (updateLink, status) => {
@@ -173,6 +172,38 @@ const ProductView = () => {
                             ? JSON.stringify(item?.value)
                             : item?.value ?? "null"}
                         </Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                  <Box>
+                    <h3>{t("product variants")}</h3>
+                    {data?.variants?.map((item, index, id) => (
+                      <Box key={id}>
+                        <Typography
+                          variant="p"
+                          sx={{
+                            fontWeight: "700",
+                            marginInlineEnd: "15px",
+                          }}
+                        >
+                          sku: {item.sku}
+                        </Typography>
+
+                        {item?.options?.map((item, idx) => (
+                          <Typography
+                            variant="p"
+                            sx={{
+                              border: 1,
+                              mx: 1,
+                              px: 1,
+                              borderRadius: 1,
+                              color: item,
+                            }}
+                            key={idx}
+                          >
+                            {item}
+                          </Typography>
+                        ))}
                       </Box>
                     ))}
                   </Box>
@@ -262,7 +293,7 @@ const ProductView = () => {
               <img
                 style={{
                   width: "100%",
-                  minHeight:"20vh",
+                  minHeight: "20vh",
                   objectFit: "contain",
                 }}
                 key={idx}
@@ -326,7 +357,7 @@ const ProductView = () => {
               <img
                 style={{
                   width: "100%",
-                  minHeight:"20vh",
+                  minHeight: "20vh",
                   objectFit: "contain",
                 }}
                 key={idx}

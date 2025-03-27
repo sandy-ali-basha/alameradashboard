@@ -15,6 +15,7 @@ import {
   GavelRounded,
   HomeRounded,
   Inventory,
+  SanitizerTwoTone,
   ShoppingCartCheckout,
   ShoppingCartCheckoutRounded,
   StorefrontRounded,
@@ -64,6 +65,16 @@ const SideBar = () => {
       icon: <ColorLensRounded />,
     },
     {
+      name: t("product colors"),
+      link: "/dashboard/products-colors",
+      icon: <ColorLensRounded />,
+    },
+    {
+      name: t("product sizes"),
+      link: "/dashboard/products-sizes",
+      icon: <SanitizerTwoTone />,
+    },
+    {
       name: t("Categories"),
       link: "/dashboard/products/categories",
       icon: <CategoryRounded />,
@@ -109,6 +120,7 @@ const SideBar = () => {
       link: "/dashboard/terms",
       icon: <GavelRounded />,
     },
+    
     {
       name: t("Home"),
       link: "/dashboard/home",
@@ -138,6 +150,16 @@ const SideBar = () => {
       name: t("Categories"),
       link: "/dashboard/products/categories",
       icon: <CategoryRounded />,
+    },
+    {
+      name: t("product colors"),
+      link: "/dashboard/products-colors",
+      icon: <ColorLensRounded />,
+    },
+    {
+      name: t("product sizes"),
+      link: "/dashboard/products-sizes",
+      icon: <SanitizerTwoTone />,
     },
     {
       name: t("Brands"),

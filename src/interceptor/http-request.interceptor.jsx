@@ -11,7 +11,7 @@ export const HttpRequestInterceptor = () => {
           ? `Bearer ${access_token}`
           : "";
         request.headers.Accept = "application/json";
-        request.headers.locale = 'tr'
+        request.headers.locale = 'ar'
         }
       return request;
     },

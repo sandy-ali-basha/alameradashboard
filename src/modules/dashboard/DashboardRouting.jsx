@@ -13,6 +13,8 @@ import OrdersRouting from "modules/orders/OrdersRouting";
 import DiscountsRouting from "modules/discounts/DiscountsRouting";
 import HomeRouting from "modules/home/HomeRouting";
 import CustomersRouting from "modules/customers/CustomersRouting";
+import ProductcolorsRouting from "modules/productColors/ProductcolorsRouting";
+import ProductSizesRouting from "modules/productSizes/ProductSizesRouting";
 
 const DashboardRouting = () => {
   return (
@@ -23,6 +25,8 @@ const DashboardRouting = () => {
           <Route path="/admin/*" element={<AdminRouting />} />
           <Route path="/terms/*" element={<TermsRouting />} />
           <Route path="/product/*" element={<ProductRouting />} />
+          <Route path="/products-colors/*" element={<ProductcolorsRouting />} />
+          <Route path="/products-sizes/*" element={<ProductSizesRouting />} />
           <Route path="/customers/*" element={<CustomersRouting />} />
           <Route path="/brands/*" element={<BrandRouting />} />
           <Route path="/orders/*" element={<OrdersRouting />} />
