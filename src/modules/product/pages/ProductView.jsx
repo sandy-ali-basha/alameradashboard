@@ -1,4 +1,4 @@
-import { Box, Grid, IconButton, Typography } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography } from "@mui/material";
 import ButtonAction from "components/shared/ButtonAction";
 import Loader from "components/shared/Loader";
 import { _axios } from "interceptor/http-config";
@@ -178,7 +178,7 @@ const ProductView = () => {
                   <Box>
                     <h3>{t("product variants")}</h3>
                     {data?.variants?.map((item, index, id) => (
-                      <Box key={id}>
+                      <Box key={id} sx={{ my: 1 }}>
                         <Typography
                           variant="p"
                           sx={{
@@ -186,23 +186,17 @@ const ProductView = () => {
                             marginInlineEnd: "15px",
                           }}
                         >
-                          sku: {item.sku}
+                          variant sku: {item.sku}
                         </Typography>
 
                         {item?.options?.map((item, idx) => (
-                          <Typography
-                            variant="p"
-                            sx={{
-                              border: 1,
-                              mx: 1,
-                              px: 1,
-                              borderRadius: 1,
-                              color: item,
-                            }}
+                          <Chip
+                            label={item.name.ar}
                             key={idx}
-                          >
-                            {item}
-                          </Typography>
+                            color="primary"
+                            variant="outlined"
+                            sx={{ mx: 1 }}
+                          ></Chip>
                         ))}
                       </Box>
                     ))}

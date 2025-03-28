@@ -12,12 +12,17 @@ import {
 } from "@mui/material";
 import { _axios } from "interceptor/http-config";
 
-const SizeSelector = ({ selectedSizes, setSelectedSizes, errors }) => {
+const SizeSelector = ({
+  selectedSizes,
+  setSelectedSizes,
+  errors,
+  notMultible,
+}) => {
   const [Sizes, setSizes] = useState([]);
 
   useEffect(() => {
     _axios.get("product_options/value/2").then((res) => {
-        console.log("product_options_values",res)
+      console.log("product_options_values", res);
       setSizes(res?.data?.data?.product_options_values || []);
     });
   }, []);
@@ -32,26 +37,40 @@ const SizeSelector = ({ selectedSizes, setSelectedSizes, errors }) => {
           <Select
             labelId="size-label"
             id="size"
-            multiple
-            value={selectedSizes}
-            onChange={(e) => setSelectedSizes(e.target.value)}
+            multiple={!notMultible} // Default is multiple, unless `notMultible` is true
+            value={notMultible ? selectedSizes || "" : selectedSizes} // Handle single/multiple
+            onChange={(e) =>
+              setSelectedSizes(notMultible ? e.target.value : e.target.value)
+            }
             renderValue={(selected) =>
-              selected
-                .map((sizeId) => Sizes.find((size) => size.id === sizeId)?.name)
-                .join(", ")
+              Array.isArray(selected)
+                ? selected
+                    .map(
+                      (sizeId) => Sizes.find((size) => size.id === sizeId)?.name
+                    )
+                    .join(", ")
+                : Sizes.find((size) => size.id === selected)?.name
             }
           >
             {Sizes.map((size) => (
-              <MenuItem color="text.main" key={size.id} value={size.id}>
-                <Checkbox color="text.main" size="small" checked={selectedSizes.includes(size.id)} />
-                <ListItemText color="text.main" primary={size.name} />
+              <MenuItem key={size.id} value={size.id}>
+                {!notMultible && (
+                  <Checkbox
+                    size="small"
+                    checked={selectedSizes.includes(size.id)}
+                  />
+                )}
+                <ListItemText primary={size.name} />
               </MenuItem>
             ))}
           </Select>
+
           <FormHelperText error>{errors?.size_id?.message}</FormHelperText>
         </FormControl>
       ) : (
-        <Typography variant="body2" color="text.main">No sizes available</Typography>
+        <Typography variant="body2" color="text.main">
+          No sizes available
+        </Typography>
       )}
     </>
   );

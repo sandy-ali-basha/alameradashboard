@@ -25,7 +25,7 @@ import { DeleteSweep } from "@mui/icons-material";
 import { BoxStyled } from "components/styled/BoxStyled";
 import UpdateRegionPrice from "./UpdateRegionPrice";
 import { useMediaQuery } from "@mui/material";
-import ProductColors from "./ProductColors";
+import ProductColors from "./product variants/ProductColors";
 
 const ProductIndex = () => {
   const {

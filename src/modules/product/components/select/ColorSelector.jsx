@@ -12,7 +12,12 @@ import {
 } from "@mui/material";
 import { _axios } from "interceptor/http-config";
 
-const ColorSelector = ({ selectedColors, setSelectedColors, errors }) => {
+const ColorSelector = ({
+  selectedColors,
+  setSelectedColors,
+  errors,
+  notMultible,
+}) => {
   const [Colors, setColors] = useState([]);
 
   useEffect(() => {
@@ -31,24 +36,30 @@ const ColorSelector = ({ selectedColors, setSelectedColors, errors }) => {
           <Select
             labelId="color-label"
             id="color"
-            multiple
+            multiple={!notMultible} // ✅ Defaults to multiple, unless `notMultible` is true
             value={selectedColors}
-            onChange={(e) => setSelectedColors(e.target.value)}
+            onChange={(e) =>
+              setSelectedColors(notMultible ? e.target.value : e.target.value)
+            }
             renderValue={(selected) =>
-              selected
-                .map(
-                  (colorId) =>
-                    Colors.find((color) => color.id === colorId)?.name
-                )
-                .join(", ")
+              Array.isArray(selected)
+                ? selected
+                    .map(
+                      (colorId) =>
+                        Colors.find((color) => color.id === colorId)?.name
+                    )
+                    .join(", ")
+                : Colors.find((color) => color.id === selected)?.name
             }
           >
             {Colors.map((color) => (
               <MenuItem key={color.id} value={color.id}>
-                <Checkbox
-                  size="small"
-                  checked={selectedColors.includes(color.id)}
-                />
+                {!notMultible && (
+                  <Checkbox
+                    size="small"
+                    checked={selectedColors.includes(color.id)}
+                  />
+                )}
                 <ListItemText primary={color.name} />
               </MenuItem>
             ))}

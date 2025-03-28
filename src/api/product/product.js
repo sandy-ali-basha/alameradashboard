@@ -16,7 +16,9 @@ export const _Product = {
   update: ({ editedID, formData }) =>
     _axios.post(Link + "/" + editedID, formData).then((res) => res?.data),
   updatePurshasable: ({ editedID, formData }) =>
-    _axios.post(Link + "/" + editedID +'/purchasable', formData).then((res) => res?.data),
+    _axios
+      .post(Link + "/" + editedID + "/purchasable", formData)
+      .then((res) => res?.data),
 
   AddImages: ({ editedID, formData }) =>
     _axios.post(Link + "/image/" + editedID, formData).then((res) => res?.data),
@@ -28,8 +30,9 @@ export const _Product = {
     _axios.post("/attribute/" + editedID, formData).then((res) => res?.data),
   addDetails: ({ editedID, formData }) =>
     _axios.post("/accordion/" + editedID, formData).then((res) => res?.data),
-  
+
   variant: ({ editedID, formData }) =>
-    _axios.post("/variants/" + editedID, formData).then((res) => res?.data),
-  
+    _axios
+      .post(Link + "/variants/" + editedID, formData)
+      .then((res) => res?.data),
 };
