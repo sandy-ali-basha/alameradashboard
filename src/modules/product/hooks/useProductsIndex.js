@@ -69,7 +69,7 @@ export const useProductIndex = () => {
     setOpen(true);
   }, []);
 
-  const handleUpdateColors = useCallback((id,variants) => {
+  const handleUpdateColors = useCallback((id, variants) => {
     setID(id);
     setVariants(variants);
     setOpenVariants(true);
@@ -79,11 +79,12 @@ export const useProductIndex = () => {
     setID(id);
     setOpenDelete(true);
   }, []);
+  
   const handleImagesSlider = useCallback((id) => {
     setID(id);
     setOpenImagesSlider(true);
   }, []);
-  const handleUpdatePrice = useCallback(( id, name ) => {
+  const handleUpdatePrice = useCallback((id, name) => {
     setID(id);
     setProductName(name);
     setUpdatePrice(true);
@@ -148,6 +149,29 @@ export const useProductIndex = () => {
       });
   };
 
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const updateAll = async () => {
+    console.log("updated")
+    for (let i = 0; i < data.data?.products.length; i++) {
+      const item = data.data?.products[i];
+
+      const formData = {
+        options: [{ size: [19], color: [23] }],
+      };
+
+      await _Product.variant({
+        editedID: item?.id,
+        formData: formData,
+      });
+
+      console.log(`Updated item ${item?.id}`);
+
+      // انتظر 500 ملي ثانية قبل الانتقال للعنصر التالي (تقدر تغير الوقت حسب الحاجة)
+      await delay(500);
+    }
+  };
+
   return {
     handleDelete,
     handleImagesSlider,
@@ -188,5 +212,6 @@ export const useProductIndex = () => {
     setUpdatePrice,
     handleUpdatePrice,
     productName,
+    updateAll,
   };
 };

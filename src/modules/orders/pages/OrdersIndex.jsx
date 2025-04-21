@@ -115,9 +115,7 @@ const OrdersIndex = () => {
             order?.address[1]?.delivery_instructions ?? "Null",
           "Payment Method": isRepeatedReference
             ? ""
-            : order?.transactions[0]?.driver === "coffline"
-            ? "cash"
-            : order?.transactions[0]?.driver ?? "Null",
+            : order?.transactions[0]?.driver,
           "Points deducted during the purchase process  النقاط المحسومة ضمن عملية الشراء":
             isRepeatedReference ? "" : order?.points_used ?? "null",
           "order sub total": isRepeatedReference ? "" : order?.sub_total,
@@ -265,14 +263,12 @@ const OrdersIndex = () => {
               {orders?.total ?? "Null"}
             </TableCell>
             <TableCell sx={{ minWidth: 50 }}>
-              {orders?.customer[0]?.first_name +
-                " " +
-                orders?.customer[0]?.last_name ?? "Null"}
+              {orders?.customer?.first_name ??
+                "Null" + " " + orders?.customer?.last_name ??
+                "Null"}
             </TableCell>
             <TableCell sx={{ minWidth: 50 }}>
-              {orders?.transactions[0]?.driver === "coffline"
-                ? "cash"
-                : orders?.transactions[0]?.driver ?? "Null"}
+              {orders?.transactions[0]?.driver ?? "Null"}
             </TableCell>
             <TableCell sx={{ minWidth: 50 }}>
               {orders?.sub_total ?? "Null"}
@@ -342,7 +338,8 @@ const OrdersIndex = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            mb: 2 , px:3,
+            mb: 2,
+            px: 3,
           }}
         >
           <Typography sx={{ color: "text.main" }} variant="h5">

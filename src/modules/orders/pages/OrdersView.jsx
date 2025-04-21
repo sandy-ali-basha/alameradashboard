@@ -109,14 +109,14 @@ const OrdersView = () => {
               CUSTOMER
             </Typography>
             <Typography>
-              {t("NAME")}: {item?.customer[0]?.first_name ?? "N/A"}{" "}
-              {item?.customer[0]?.last_name ?? " N/A"}
+              {t("NAME")}: {item?.customer?.first_name ?? "N/A"}{" "}
+              {item?.customer?.last_name ?? " N/A"}
             </Typography>
             <Typography>
-              {t("age")}: {item?.customer[0]?.age ?? "N/A"}
+              {t("age")}: {item?.customer?.age ?? "N/A"}
             </Typography>
             <Typography>
-              {t("gender")}: {item?.customer[0]?.gender ?? "N/A"}
+              {t("gender")}: {item?.customer?.gender ?? "N/A"}
             </Typography>
           </BoxStyled>
         </Grid>

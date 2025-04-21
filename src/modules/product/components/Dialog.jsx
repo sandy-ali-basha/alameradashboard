@@ -18,15 +18,17 @@ const DeleteDialog = ({ id, page, count, open, setOpen }) => {
   const deleteproduct = useDeleteProduct({ page, count });
   const handleClose = () => setOpen(false);
   const { refetch } = useProduct();
+  
   const DeleteProduct = () => {
     setLoading(true);
     deleteproduct.mutate(id, {
-      onSuccess: () => {
+      onSuccess: () => {  
         setOpen(false);
         refetch();
       },
     });
   };
+
   return (
     <React.Fragment>
       <Dialog
@@ -47,7 +49,6 @@ const DeleteDialog = ({ id, page, count, open, setOpen }) => {
         <Box sx={{ width: "40%", margin: "0 auto" }}>
           <img src={deleteImg} alt="" style={{ width: "100%" }} />
         </Box>
-       
           <DialogContentText
             id="alert-dialog-description"
             sx={{ color: "text.main" }}

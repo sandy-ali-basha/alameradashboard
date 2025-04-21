@@ -172,23 +172,20 @@ const CreateProductDetails = ({ setNewProductId }) => {
               </Grid>
             </Grid> */}
 
-    <Grid item xs={6} sx={{ p: "10px" }}>
-
-            <SizeSelector
-              selectedSizes={selectedSizes}
-              setSelectedSizes={setSelectedSizes}
-              errors={errors}
-            />
-            
- </Grid>
-     <Grid item xs={6} sx={{ p: "10px" }}>
-
-            <ColorSelector
-              selectedColors={selectedColors}
-              setSelectedColors={setSelectedColors}
-              errors={errors}
-            />
-  </Grid>
+            <Grid item xs={6} sx={{ p: "10px" }}>
+              <SizeSelector
+                selectedSizes={selectedSizes}
+                setSelectedSizes={setSelectedSizes}
+                errors={errors}
+              />
+            </Grid>
+            <Grid item xs={6} sx={{ p: "10px" }}>
+              <ColorSelector
+                selectedColors={selectedColors}
+                setSelectedColors={setSelectedColors}
+                errors={errors}
+              />
+            </Grid>
 
             <Grid item md={6} xs={12} sx={{ p: 1 }}>
               {brands ? (

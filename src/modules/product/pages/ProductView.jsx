@@ -2,7 +2,7 @@ import { Box, Chip, Grid, IconButton, Typography } from "@mui/material";
 import ButtonAction from "components/shared/ButtonAction";
 import Loader from "components/shared/Loader";
 import { _axios } from "interceptor/http-config";
-import React from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,12 +12,14 @@ import {
   ArrowBack,
   ArrowForward,
   Delete,
+  DeleteTwoTone,
   ModeTwoTone,
 } from "@mui/icons-material";
 import EditImage from "../components/images/EditImage";
 import { useState } from "react";
 import DeleteImage from "../components/images/DeleteImage";
 import { BoxStyled } from "components/styled/BoxStyled";
+import DeleteDialog from "../components/Dialog";
 
 const ProductView = () => {
   const { t } = useTranslation("index");
@@ -27,7 +29,7 @@ const ProductView = () => {
   const [open, setOpen] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [ImageStatus, setImageStatus] = useState(false);
-
+  const [OpenDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [link, setLink] = useState(null);
   const handleBack = (e) => {
     e.preventDefault();
@@ -103,6 +105,10 @@ const ProductView = () => {
     },
   ];
 
+  const handleDelete = useCallback((id) => {
+    setOpenDelete(true);
+  }, []);
+
   const handleUpdateImage = (updateLink, status) => {
     setLink(updateLink);
     setImageStatus(status);
@@ -132,8 +138,17 @@ const ProductView = () => {
             }}
             variant="h5"
           >
-            {data?.name}
+            {data?.name} {" - "}
+            {data?.id}
+            {/* <IconButton aria-label="Delete" onClick={handleDelete}>
+              <DeleteTwoTone color="error" />
+            </IconButton> */}
           </Typography>
+          <DeleteDialog
+            id={params.id}
+            open={OpenDeleteDialog}
+            setOpen={setOpenDeleteDialog}
+          />
           <Box
             key={params.id}
             sx={{

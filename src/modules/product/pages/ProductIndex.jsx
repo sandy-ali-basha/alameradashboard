@@ -63,7 +63,8 @@ const ProductIndex = () => {
     productName,
     handleUpdateColors,
     openVariants,
-    setOpenVariants
+    setOpenVariants,
+    updateAll
   } = useProductIndex();
 
   const rows = useMemo(() => {
@@ -86,6 +87,7 @@ const ProductIndex = () => {
   }, [filteredData]); // Dependency array
   const isSmallScreen = useMediaQuery("(max-width:600px)");
   // Define columns for the DataGrid
+
   const gridColumns = [
     {
       field: "id",
